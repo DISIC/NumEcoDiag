@@ -1,0 +1,10 @@
+:root {
+	--cl-black: #000;
+	--cl-gray: #555;
+	--cl-green: #2a2;
+	--cl-red: #a22;
+}
+
+body {
+	font-family: sans-serif;
+}

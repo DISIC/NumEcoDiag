@@ -70,6 +70,4 @@
 </script>
 
 	<VersionSelector {availableVersions} on:versionChanged={e => Controller.switchRGESN(e.detail.versionToApply)} />
-
 	<Referential {referential} />
-	
