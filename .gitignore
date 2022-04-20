@@ -1,2 +1,5 @@
 /node_modules/
+/public/assets/app.css
+/public/assets/app.js
+/public/assets/app.js.map
 .DS_Store
