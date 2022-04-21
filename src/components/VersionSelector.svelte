@@ -4,11 +4,12 @@
 	export let availableVersions;
 	function updateVersion(e) {
 		const newVersion = e.target.elements['version-selector'].value;
-		dispatch('versionChanged', { versionToApply: newVersion });
+		dispatch('changed', { versionToApply: newVersion });
+        e.preventDefault();
 	}
 </script>
 
-<form on:submit|preventDefault="{updateVersion}">
+<form on:submit="{updateVersion}">
 	<label>
 		Version RGESN à utiliser :
 		<select name="version-selector">

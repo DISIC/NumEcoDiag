@@ -1,31 +1,58 @@
 <script>
+
+	import { createEventDispatcher } from 'svelte';
+	let dispatch = createEventDispatcher();
 	export let referential;
+	
+	let evaluated = 0; // This needs to be setted regarding the history
+
+	function resetAnswer(e) {
+		let checkedRadioElm = e.target.parentNode.querySelector(':checked');
+		if(checkedRadioElm !== null) {
+			checkedRadioElm.checked = false;
+		}
+		e.preventDefault();
+	}
+
 </script>
 
 {#if referential}
-	<div class="criteria">
+
+	<div class="status">
+		<dl>
+			<dt>Total critères</dt> 
+			<dd>{referential.criteres.length}</dd>
+			<dt>Évalués</dt> 
+			<dd>{evaluated}</dd>
+			<dt>À évaluer</dt> 
+			<dd>{referential.criteres.length - evaluated}</dd>
+		</dl>
+	</div>
+
+	<form class="criteria">
 		{#each referential.criteres as critere}
 			<div class="criterion">
 				<p class="criterion__title">{critere.id } : {critere.critere}</p>
 				<div class="criterion__status">
 					<label>
-						<input name="criterion-{critere.id}" type="radio" value="valid" />
+						<input name="criterion-{critere.id}" on:change="{() => dispatch('updated', {})}" type="radio" value="valid" />
 						<span>Conforme</span>
 					</label>
 					<label>
-						<input name="criterion-{critere.id}" type="radio" value="invalid" />
+						<input name="criterion-{critere.id}" on:change="{() => dispatch('updated', {})}" type="radio" value="rejected" />
 						<span>Rejeté</span>
 					</label>
 					<label>
-						<input name="criterion-{critere.id}" type="radio" value="not-applicable" />
+						<input name="criterion-{critere.id}" on:change="{() => dispatch('updated', {})}" type="radio" value="not-applicable" />
 						<span>Non applicable</span>
 					</label>   
 				</div>
+				<button on:click="{resetAnswer}">Effacer la réponse</button>
 			</div>
 		{/each}
-	</div>
-{/if}
+	</form>
 
+{/if}
 
 <style>
 	.criteria {
@@ -63,5 +90,9 @@
 	}
 	label:last-of-type input:checked {
 		accent-color: var(--cl-gray);
+	}
+	button {
+		margin-top: 1.5em;
+		max-width: 100px;
 	}
 </style>
