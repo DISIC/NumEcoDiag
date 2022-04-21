@@ -25,7 +25,6 @@
 </script>
 
 {#if referential}
-
 	<form class="criteria">
 		{#each referential.criteres as critere}
 			<div class="criterion">
@@ -60,7 +59,6 @@
 			</div>
 		{/each}
 	</form>
-
 {/if}
 
 <style>
