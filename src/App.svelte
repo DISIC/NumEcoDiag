@@ -7,7 +7,7 @@
 	
 	const availableVersions = ['beta', '1.0']; // Available versions (stored in /public/rgesn)
 	let referential; // RGESN content
-	let currAuditId = 0; // Audit index identifier
+	let auditIndex = 0; // Audit index identifier
 	let audits = [ // Audit progression (saved with localStorage for dev, then into browser.storage)
 		{  
 			selectedVersion: 'beta',
@@ -42,47 +42,52 @@
 	}
 
 	function switchToVersion(version) {
-        if(version !== audits[currAuditId].selectedVersion) {
-            if(confirm(`Vous allez passer de la version ${audits[currAuditId].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[currAuditId].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
-                audits[currAuditId].byCriterion = {};
-                audits[currAuditId].selectedVersion = version;
-                saveLocalAudits();
-                openReferentiel(version);
-            }
-        }
+		if(version !== audits[auditIndex].selectedVersion) {
+			if(confirm(`Vous allez passer de la version ${audits[auditIndex].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[auditIndex].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
+				audits[auditIndex].byCriterion = {};
+				audits[auditIndex].selectedVersion = version;
+				saveLocalAudits();
+				openReferentiel(version);
+			}
+		}
 	}
 
-    function updateAudit(e) {
-        const criterion = {
-            id: e.detail.criterionId,
-            state: e.detail.criterionState
-        }
-        // Updates screen
-        audits[currAuditId].byCriterion[criterion.id] = {
-            state: criterion.state
-        };
-        // Updates local save
-        saveLocalAudits();
-
+	function updateAudit(e) {
+		const criterion = {
+			id: e.detail.criterionId,
+			state: e.detail.criterionState
+		}
+		// Updates screen
+		audits[auditIndex].byCriterion[criterion.id] = {
+			state: criterion.state
+		};
+		// Updates local save
+		saveLocalAudits();
 
 	}
-
-    // Temp : uses localStorage for dev, then browser.storage
-	function getLocalAudits() {
-        const storedAudits = JSON.parse(localStorage.getItem('audit'));
-        audits[currAuditId] = storedAudits[currAuditId];
-	}
-
-    // Temp : uses localStorage for dev, then browser.storage
+  
+	// Temp : uses localStorage for dev, then browser.storage
 	function saveLocalAudits() {
-        localStorage.setItem('audit', JSON.stringify(audits));
+		localStorage.setItem('audits', JSON.stringify(audits));
+		localStorage.setItem('auditIndex', auditIndex);
+	}	
+
+	// Temp : uses localStorage for dev, then browser.storage
+	function getLocalAudits() {
+		const storedAudits = JSON.parse(localStorage.getItem('audits'));
+		const storedAuditIndex = JSON.parse(localStorage.getItem('auditIndex'));
+		if(storedAudits !== null && storedAuditIndex !== null) {
+			auditIndex = storedAuditIndex;
+			audits[auditIndex] = storedAudits[auditIndex];
+		}
 	}
 
 	function logError(error) {
 		console.error(error);
 	};
 
-    openReferentiel(audits[currAuditId].selectedVersion);
+	getLocalAudits();
+	openReferentiel(audits[auditIndex].selectedVersion); // WARNING TEMP ?
 
 </script>
 
