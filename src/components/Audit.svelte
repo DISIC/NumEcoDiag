@@ -6,10 +6,20 @@
 	
 	let evaluated = 0; // This needs to be setted regarding the history
 
+	function updateAnswer(criterionId, criterionValue = undefined) {
+		dispatch(
+			'updated', { 
+				criterionId: criterionId,
+				criterionState: criterionValue
+			}
+		);
+	}
+
 	function resetAnswer(e) {
 		let checkedRadioElm = e.target.parentNode.querySelector(':checked');
 		if(checkedRadioElm !== null) {
-			checkedRadioElm.checked = false;
+			checkedRadioElm.checked = false; // Front updating
+			updateAnswer(checkedRadioElm.name); // Back updating
 		}
 		e.preventDefault();
 	}
@@ -35,15 +45,27 @@
 				<p class="criterion__title">{critere.id } : {critere.critere}</p>
 				<div class="criterion__status">
 					<label>
-						<input name="criterion-{critere.id}" on:change="{() => dispatch('updated', {})}" type="radio" value="valid" />
+						<input
+							on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+							name="{critere.id}" 
+							type="radio" 
+							value="valid" />
 						<span>Conforme</span>
 					</label>
 					<label>
-						<input name="criterion-{critere.id}" on:change="{() => dispatch('updated', {})}" type="radio" value="rejected" />
+						<input
+							on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+							name="{critere.id}" 
+							type="radio" 
+							value="rejected" />
 						<span>Rejeté</span>
 					</label>
 					<label>
-						<input name="criterion-{critere.id}" on:change="{() => dispatch('updated', {})}" type="radio" value="not-applicable" />
+						<input
+							on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+							name="{critere.id}" 
+							type="radio" 
+							value="not-applicable" />
 						<span>Non applicable</span>
 					</label>   
 				</div>

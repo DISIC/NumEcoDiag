@@ -51,20 +51,33 @@
 	}
 
 	function switchToVersion(version) {
+
 		audits[currAuditId].selectedVersion = version;
+        
 		openReferentiel(version);
+
 	}
 
 	function updateAudit(e) {
 
+        const criterion = {
+            id: e.detail.criterionId,
+            state: e.detail.criterionState
+        }
+
+        audits[currAuditId].byCriterion[criterion.id] = {
+            state: criterion.state
+        };
 
 	}
 
+    // Temp : uses localStorage for dev, then browser.storage
 	function getAudit() {
 
 
 	}
 
+    // Temp : uses localStorage for dev, then browser.storage
 	function saveAudit() {
 
 
@@ -74,6 +87,7 @@
 		console.error(error);
 	};
 
+    
 </script>
 
 	<VersionSelector {availableVersions} on:changed={(e) => switchToVersion(e.detail.versionToApply)} />
