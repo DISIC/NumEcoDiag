@@ -57,13 +57,15 @@
 			id: e.detail.criterionId,
 			state: e.detail.criterionState
 		}
-		// Updates screen
-		audits[auditIndex].byCriterion[criterion.id] = {
-			state: criterion.state
-		};
-		// Updates local save
+		if(criterion.state !== undefined) {
+			audits[auditIndex].byCriterion[criterion.id] = {
+				state: criterion.state
+			};
+		}
+		else {
+			delete audits[auditIndex].byCriterion[criterion.id];
+		}
 		saveLocalAudits();
-
 	}
   
 	// Temp : uses localStorage for dev, then browser.storage
