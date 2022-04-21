@@ -9,6 +9,7 @@ Permettre au plus grand nombre d'auditer par leurs propres moyens et depuis leur
 * [1] Isoler les services numériques afin de pouvoir mener plusieurs audits à la fois
 * [1] Générer la "grille" d'audit depuis source RGESN [DONE]
 * [1] Valider / Rejeter ou définir un critère comme étant non applicable [DONE]
+* [1] Annuler l'évaluation d'un critère (unchecked) [DONE]
 * [1] Sauvegarder côté client à chaque changement (local storage)
 * [1] Mettre en évidence les résultats (simplifié)
 * [1] Permettre la sélection de la version du RGESN à utiliser [DONE]
