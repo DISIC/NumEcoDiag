@@ -80,7 +80,7 @@
 		const storedAuditIndex = JSON.parse(localStorage.getItem('auditIndex'));
 		if(storedAudits !== null && storedAuditIndex !== null) {
 			auditIndex = storedAuditIndex;
-			audits[auditIndex] = storedAudits[auditIndex];
+			audits = storedAudits;
 		}
 	}
 
