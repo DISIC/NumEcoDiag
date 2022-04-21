@@ -11,15 +11,6 @@
 	let audits = [ // Audit progression (saved with localStorage for dev, then into browser.storage)
 		{  
 			selectedVersion: 'beta',
-			status: {
-				total: 0,
-				evaluated: 0,
-			},
-			score: {
-				valid: 0,
-				rejected: 0,
-				notApplicable: 0
-			},
 			byCriterion: {}
 		}
 	];
@@ -51,11 +42,17 @@
 	}
 
 	function switchToVersion(version) {
-		audits[currAuditId].selectedVersion = version;
-		openReferentiel(version);
+        if(version !== audits[currAuditId].selectedVersion) {
+            if(confirm(`Vous allez passer de la version ${audits[currAuditId].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[currAuditId].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
+                audits[currAuditId].byCriterion = {};
+                audits[currAuditId].selectedVersion = version;
+                saveLocalAudits();
+                openReferentiel(version);
+            }
+        }
 	}
 
-	function updateAudit(e) {
+    function updateAudit(e) {
         const criterion = {
             id: e.detail.criterionId,
             state: e.detail.criterionState
@@ -65,25 +62,27 @@
             state: criterion.state
         };
         // Updates local save
-        saveLocalAudit();
+        saveLocalAudits();
 
 
 	}
 
     // Temp : uses localStorage for dev, then browser.storage
-	function getLocalAudit() {
+	function getLocalAudits() {
         const storedAudits = JSON.parse(localStorage.getItem('audit'));
         audits[currAuditId] = storedAudits[currAuditId];
 	}
 
     // Temp : uses localStorage for dev, then browser.storage
-	function saveLocalAudit() {
+	function saveLocalAudits() {
         localStorage.setItem('audit', JSON.stringify(audits));
 	}
 
 	function logError(error) {
 		console.error(error);
 	};
+
+    openReferentiel(audits[currAuditId].selectedVersion);
 
 </script>
 
