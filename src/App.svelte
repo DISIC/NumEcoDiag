@@ -69,6 +69,8 @@
             state: criterion.state
         };
 
+        console.log(audits[currAuditId].byCriterion);
+
 	}
 
     // Temp : uses localStorage for dev, then browser.storage
@@ -87,7 +89,6 @@
 		console.error(error);
 	};
 
-    
 </script>
 
 	<VersionSelector {availableVersions} on:changed={(e) => switchToVersion(e.detail.versionToApply)} />

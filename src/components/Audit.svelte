@@ -4,8 +4,6 @@
 	let dispatch = createEventDispatcher();
 	export let referential;
 	
-	let evaluated = 0; // This needs to be setted regarding the history
-
 	function updateAnswer(criterionId, criterionValue = undefined) {
 		dispatch(
 			'updated', { 
@@ -27,17 +25,6 @@
 </script>
 
 {#if referential}
-
-	<div class="status">
-		<dl>
-			<dt>Total critères</dt> 
-			<dd>{referential.criteres.length}</dd>
-			<dt>Évalués</dt> 
-			<dd>{evaluated}</dd>
-			<dt>À évaluer</dt> 
-			<dd>{referential.criteres.length - evaluated}</dd>
-		</dl>
-	</div>
 
 	<form class="criteria">
 		{#each referential.criteres as critere}
