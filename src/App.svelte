@@ -51,38 +51,34 @@
 	}
 
 	function switchToVersion(version) {
-
 		audits[currAuditId].selectedVersion = version;
-        
 		openReferentiel(version);
-
 	}
 
 	function updateAudit(e) {
-
         const criterion = {
             id: e.detail.criterionId,
             state: e.detail.criterionState
         }
-
+        // Updates screen
         audits[currAuditId].byCriterion[criterion.id] = {
             state: criterion.state
         };
-
-        console.log(audits[currAuditId].byCriterion);
-
-	}
-
-    // Temp : uses localStorage for dev, then browser.storage
-	function getAudit() {
+        // Updates local save
+        saveLocalAudit();
 
 
 	}
 
     // Temp : uses localStorage for dev, then browser.storage
-	function saveAudit() {
+	function getLocalAudit() {
+        const storedAudits = JSON.parse(localStorage.getItem('audit'));
+        audits[currAuditId] = storedAudits[currAuditId];
+	}
 
-
+    // Temp : uses localStorage for dev, then browser.storage
+	function saveLocalAudit() {
+        localStorage.setItem('audit', JSON.stringify(audits));
 	}
 
 	function logError(error) {
