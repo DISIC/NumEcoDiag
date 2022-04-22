@@ -1,0 +1,118 @@
+<script>
+
+	import { createEventDispatcher } from 'svelte';
+    import { onMount } from 'svelte';
+
+	export let referential;
+    export let audit;
+
+    let dispatch = createEventDispatcher();
+
+	function updateAnswer(criterionId, criterionValue = undefined) {
+		dispatch(
+			'updated', { 
+				criterionId: criterionId,
+				criterionState: criterionValue
+			}
+		);
+	}
+
+	function resetAnswer(e) {
+		let checkedRadioElm = e.target.parentNode.querySelector(':checked');
+		if(checkedRadioElm !== null) {
+			checkedRadioElm.checked = false; // Front updating
+			updateAnswer(checkedRadioElm.name); // Back updating
+		}
+		e.preventDefault();
+	}
+
+    onMount(() => { // Check the corresponding radios for all the criteria that have already been evaluated
+        if(audit.stats.assessed > 0) {
+            let assessedIds = Object.keys(audit.byCriteria);
+            for(let assessedId of assessedIds) {
+                let criterionElm = document.getElementById(assessedId);
+                let criterionInputElm = criterionElm.querySelector(`input[value="${audit.byCriteria[assessedId].state}"]`);
+                criterionInputElm.checked = true;
+            }
+        }
+    });
+
+</script>
+
+<form class="criteria">
+    {#each referential.criteres as critere}
+		<div class="criterion" id="{critere.id}">
+			<p class="criterion__title">{critere.id} : {critere.critere}</p>
+			<div class="criterion__status">
+				<label>
+					<input
+						on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+						name="{critere.id}" 
+						type="radio" 
+						value="valid" />
+					<span>Conforme</span>
+				</label>
+				<label>
+					<input
+						on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+						name="{critere.id}" 
+						type="radio" 
+						value="rejected" />
+					<span>Rejeté</span>
+				</label>
+				<label>
+					<input
+						on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+						name="{critere.id}" 
+						type="radio" 
+						value="not-applicable" />
+					<span>Non applicable</span>
+				</label>   
+			</div>
+			<button on:click="{resetAnswer}">Effacer la réponse</button>
+		</div>
+	{/each}
+</form>
+
+<style>
+	.criteria {
+		max-width: 40ch;
+	}
+	.criterion + .criterion {
+		margin-top: 3rem;
+	}
+	.criterion__title::before {
+		content: "\2014";
+		margin-right: 0.5em;
+	}
+	.criterion__status {
+		align-items: center;
+		display: grid;
+		gap: 2em;
+		grid-template-columns: repeat(3, auto);
+		justify-content: start;
+	}
+	label {
+		font-size: 0.9em;
+		color: var(--cl-gray);
+	}
+	input {
+		margin: 0.5em auto auto auto;
+	}
+	input:checked + span {
+		color: var(--cl-black);
+	}
+	label:first-of-type input:checked {
+		accent-color: var(--cl-green);
+	}
+	label:nth-of-type(2) input:checked {
+		accent-color: var(--cl-red);
+	}
+	label:last-of-type input:checked {
+		accent-color: var(--cl-gray);
+	}
+	button {
+		margin-top: 1.5em;
+		max-width: 100px;
+	}
+</style>
