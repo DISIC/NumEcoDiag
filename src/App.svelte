@@ -55,6 +55,9 @@
                     getRGESN(version);
                 }
             }
+            else {
+                alert(`Vous utilisez déjà la version ${version} du référentiel.`);
+            }
         }
 
         function updateAudit(e) {
