@@ -27,14 +27,12 @@
 	}
 
     onMount(() => { // Check the corresponding radios for all the criteria that have already been evaluated
-        if(audit.stats.assessed > 0) {
-            const keys = Object.keys(audit.byCriteria);
-            const values = Object.values(audit.byCriteria);
-            for(let i = 0, l = keys.length; i < l; i++) {
-                let criterionElm = document.getElementById(keys[i]);
-                let criterionInputElm = criterionElm.querySelector(`input[value="${values[i].state}"]`);
-                criterionInputElm.checked = true;
-            }
+        const keys = Object.keys(audit.byCriteria);
+        const values = Object.values(audit.byCriteria);
+        for(let i = 0, l = keys.length; i < l; i++) {
+            let criterionElm = document.getElementById(keys[i]);
+            let criterionInputElm = criterionElm.querySelector(`input[value="${values[i].state}"]`);
+            criterionInputElm.checked = true;
         }
     });
 
@@ -50,7 +48,7 @@
 						on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
 						name="{critere.id}" 
 						type="radio" 
-						value="valid" />
+						value="satisfied" />
 					<span>Conforme</span>
 				</label>
 				<label>

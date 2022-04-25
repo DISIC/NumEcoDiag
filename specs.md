@@ -11,7 +11,7 @@ Permettre au plus grand nombre d'auditer par leurs propres moyens et depuis leur
 * [1] Valider / Rejeter ou définir un critère comme étant non applicable [DONE]
 * [1] Annuler l'évaluation d'un critère (unchecked) [DONE]
 * [1] Sauvegarder côté client à chaque changement (local storage) [DONE]
-* [1] Mettre en évidence les résultats (simplifié)
+* [1] Mettre en évidence les résultats (simplifié) [DONE]
 * [1] Permettre la sélection de la version du RGESN à utiliser [DONE]
 * [2] Permettre l'ajout des notes rédactionnelles pour chaque critère
 * [2] Permettre l'ajout de contenu multimédia pour chaque critère (possible sans lien externe ?)
