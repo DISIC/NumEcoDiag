@@ -28,10 +28,11 @@
 
     onMount(() => { // Check the corresponding radios for all the criteria that have already been evaluated
         if(audit.stats.assessed > 0) {
-            let assessedIds = Object.keys(audit.byCriteria);
-            for(let assessedId of assessedIds) {
-                let criterionElm = document.getElementById(assessedId);
-                let criterionInputElm = criterionElm.querySelector(`input[value="${audit.byCriteria[assessedId].state}"]`);
+            const keys = Object.keys(audit.byCriteria);
+            const values = Object.values(audit.byCriteria);
+            for(let i = 0, l = keys.length; i < l; i++) {
+                let criterionElm = document.getElementById(keys[i]);
+                let criterionInputElm = criterionElm.querySelector(`input[value="${values[i].state}"]`);
                 criterionInputElm.checked = true;
             }
         }
