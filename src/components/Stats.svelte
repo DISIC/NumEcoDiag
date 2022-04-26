@@ -14,23 +14,23 @@
       <td>{nbOfCriteria}</td>
     </tr>
     <tr>
-      <th>Évalué(s)</th>
-      <td>{assessed}</td>
-    </tr>
-    <tr>
       <th>À évaluer</th>
       <td>{nbOfCriteria - (assessed)}</td>
     </tr>
     <tr>
-        <th>Validé(s)</th>
+      <th>Évalué(s)</th>
+      <td>{assessed}</td>
+    </tr>
+    <tr>
+        <th class="donut-ref satisfied">Validé(s)</th>
         <td>{counters.satisfied}</td>
     </tr>
     <tr>
-        <th>Rejeté(s)</th>
+        <th class="donut-ref rejected">Rejeté(s)</th>
         <td>{counters.rejected}</td>
     </tr>
     <tr>
-        <th>Non applicable(s)</th>
+        <th class="donut-ref not-applicable">Non applicable(s)</th>
         <td>{counters.notApplicable}</td>
     </tr>
     <tr>
@@ -40,6 +40,23 @@
 </table>
   
 <style>
+    .donut-ref::before {
+        content: "";
+        display: inline-block;
+        height: 9px;
+        margin-right: .5em;
+        vertical-align: middle;
+        width: 9px;
+    }
+    .donut-ref.satisfied::before {
+        background-color: green;
+    }
+    .donut-ref.rejected::before {
+        background-color: red;
+    }
+    .donut-ref.not-applicable::before {
+        background-color: gray;
+    }
     table {
         border-collapse: collapse;
     }
