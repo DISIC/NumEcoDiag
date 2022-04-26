@@ -1,12 +1,16 @@
 <script>
+
 	import { createEventDispatcher } from 'svelte';
-	let dispatch = createEventDispatcher();
 	export let availableVersions;
+
+	let dispatch = createEventDispatcher();
+
 	function updateVersion(e) {
 		const newVersion = e.target.elements['version-selector'].value;
 		dispatch('changed', { versionToApply: newVersion });
         e.preventDefault();
 	}
+    
 </script>
 
 <form on:submit="{updateVersion}">
