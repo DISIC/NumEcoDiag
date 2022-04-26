@@ -37,7 +37,7 @@
 
 </script>
 
-<div class="donut">
+<div class="donut" aria-hidden="true" focusable="false">
 	<svg>
 		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px; stroke: green;"></circle>
 		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px; stroke: red;"></circle>
