@@ -5,6 +5,7 @@
         import VersionSelect from './components/VersionSelect.svelte';
         import AuditForm from './components/AuditForm.svelte';
         import Stats from './components/Stats.svelte'
+        import Donut from './components/Donut.svelte'
         
         const availableVersions = ['beta', '1.0']; // Available versions (stored in /public/rgesn)
         let referential; // RGESN content
@@ -145,6 +146,12 @@
     <Stats
         bind:counters="{audits[auditIndex].byCounters}"
         bind:nbOfCriteria="{referential.criteres.length}" />
+
+
+    <Donut bind:counters="{audits[auditIndex].byCounters}" />
+
+
+
     <AuditForm 
         audit="{audits[auditIndex]}" 
         referential="{referential}" 
