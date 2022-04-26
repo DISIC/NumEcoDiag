@@ -1,35 +1,75 @@
 <script>
+
     export let counters;
     export let nbOfCriteria;
+
     $: assessed = counters.satisfied + counters.rejected + counters.notApplicable;
     $: conformity = counters.satisfied / ((assessed) - (counters.notApplicable)) * 100;
+    $: satisfiedRate = (counters.satisfied / assessed) * 100; 
+	$: rejectedRate = (counters.rejected / assessed) * 100; 
+	$: notApplicableRate = (counters.notApplicable / assessed) * 100; 
+
 </script>
 
-<div>
-    <div>
-        <h2>Critères RGESN</h2>
-        <dl>
-            <dt>Total</dt> 
-            <dd>{nbOfCriteria}</dd>
-            <dt>Évalué(s)</dt> 
-            <dd>{assessed}</dd>
-            <dt>À évaluer</dt> 
-            <dd>{nbOfCriteria - (assessed)}</dd>
-        </dl>
-    </div>
-    {#if !Number.isNaN(conformity)}
-        <dl>
-            <h2>Conformité RGESN globale</h2>
-            <p>{conformity} %</p>
-        </dl>
-        <dl>
-            <h2>Conformité RGESN par critère</h2>
-            <dt>Satisfait(s)</dt> 
-            <dd>{counters.satisfied}</dd>
-            <dt>Rejeté(s)</dt> 
-            <dd>{counters.rejected}</dd>
-            <dt>Non applicable(s)</dt> 
-            <dd>{counters.notApplicable}</dd>
-        </dl>
-    {/if}
-</div>
+<table>
+    <caption>Critères</caption>
+    <thead>
+        <tr>
+            <th>Total</th>
+            <th>Évalué(s)</th>
+            <th>À évaluer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{nbOfCriteria}</td>
+            <td>{assessed}</td>
+            <td>{nbOfCriteria - (assessed)}</td>
+        </tr>
+    </tbody>
+</table>
+<table>
+    <caption>Résultats</caption>
+    <thead>
+        <tr>
+            <th>Validé(s)</th>
+            <th>Rejeté(s)</th>
+            <th>Non applicable(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{counters.satisfied} <span>(soit {satisfiedRate} %)</span></td>
+            <td>{counters.rejected} <span>(soit {rejectedRate} %)</span></td>
+            <td>{counters.notApplicable} <span>(soit {notApplicableRate} %)</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<style>
+    table {
+        border-collapse: collapse;
+        max-width: 65ch;
+        text-align: center;
+        width: 100%;
+    }
+    table + table {
+        margin-top: 1em;
+    }
+    caption {
+        font-weight: bold; 
+        margin-bottom: 0.25em;
+        text-align: left;
+    }
+    th, td {
+        border: solid 1px;
+        min-width: 150px;
+        padding: 0.5em;
+    }
+    th {
+        font-weight: normal;
+    }
+    span {
+        font-size: 0.75em;
+    }
+</style>
