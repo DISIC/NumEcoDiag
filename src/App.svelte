@@ -9,7 +9,7 @@
         
         const availableVersions = ['beta', '1.0']; // Available versions (stored in /public/rgesn)
         let referential; // RGESN content
-        let auditIndex = 0; // Current audit index identifier
+        let index = 0; // Current audit index identifier
         let audits = [ // Audits progression (saved with localStorage for dev, then into browser.storage)
             {  
                 byCriteria: {},
@@ -51,10 +51,10 @@
         }
 
         function changeRGESN(version) {
-            if(version !== audits[auditIndex].selectedVersion) {
-                if(confirm(`Vous allez passer de la version ${audits[auditIndex].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[auditIndex].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
-                    audits[auditIndex].byCriteria = {};
-                    audits[auditIndex].selectedVersion = version;
+            if(version !== audits[index].selectedVersion) {
+                if(confirm(`Vous allez passer de la version ${audits[index].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[index].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
+                    audits[index].byCriteria = {};
+                    audits[index].selectedVersion = version;
                     saveAudits();
                     getRGESN(version);
                 }
@@ -71,17 +71,17 @@
             }        
             // If already defined, removes 1 to the previous associated state counter 
             try {
-                let previousCriterionState = audits[auditIndex].byCriteria[criterion.id].state;
+                let previousCriterionState = audits[index].byCriteria[criterion.id].state;
                 if(previousCriterionState !== undefined) {
                     switch (previousCriterionState) {
                         case 'satisfied':
-                            audits[auditIndex].byCounters.satisfied--;
+                            audits[index].byCounters.satisfied--;
                             break;
                         case 'rejected':
-                            audits[auditIndex].byCounters.rejected--;
+                            audits[index].byCounters.rejected--;
                             break;
                         case 'not-applicable':
-                            audits[auditIndex].byCounters.notApplicable--;
+                            audits[index].byCounters.notApplicable--;
                             break;
                     }
                 }
@@ -90,23 +90,23 @@
             // In all cases, add 1 to the new associated state counter 
             finally {
                 if(criterion.state !== undefined) {
-                    audits[auditIndex].byCriteria[criterion.id] = {
+                    audits[index].byCriteria[criterion.id] = {
                         state: criterion.state
                     };
                     switch (criterion.state) {
                         case 'satisfied':
-                            audits[auditIndex].byCounters.satisfied++;
+                            audits[index].byCounters.satisfied++;
                             break;
                         case 'rejected':
-                            audits[auditIndex].byCounters.rejected++;
+                            audits[index].byCounters.rejected++;
                             break;
                         case 'not-applicable':
-                            audits[auditIndex].byCounters.notApplicable++;
+                            audits[index].byCounters.notApplicable++;
                             break;
                     }
                 }
                 else {
-                    delete audits[auditIndex].byCriteria[criterion.id];
+                    delete audits[index].byCriteria[criterion.id];
                 }
             }
             saveAudits();
@@ -115,15 +115,15 @@
         // Temp : uses localStorage for dev, then browser.storage
         function saveAudits() {
             localStorage.setItem('audits', JSON.stringify(audits));
-            localStorage.setItem('auditIndex', auditIndex);
+            localStorage.setItem('index', index);
         }	
 
         // Temp : uses localStorage for dev, then browser.storage
         function getAudits() {
             const storedAudits = JSON.parse(localStorage.getItem('audits'));
-            const storedAuditIndex = JSON.parse(localStorage.getItem('auditIndex'));
-            if(storedAudits !== null && storedAuditIndex !== null) {
-                auditIndex = storedAuditIndex;
+            const storedindex = JSON.parse(localStorage.getItem('index'));
+            if(storedAudits !== null && storedindex !== null) {
+                index = storedindex;
                 audits = storedAudits;
             }
         }
@@ -135,25 +135,36 @@
     /* ### PROCEDURAL ### */
 
         getAudits();
-        getRGESN(audits[auditIndex].selectedVersion);
+        getRGESN(audits[index].selectedVersion);
 
 </script>
 
-<VersionSelect 
-    availableVersions="{availableVersions}" 
-    on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
+<VersionSelect availableVersions="{availableVersions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
 {#if referential}
-    <Stats
-        bind:counters="{audits[auditIndex].byCounters}"
-        bind:nbOfCriteria="{referential.criteres.length}" />
-
-
-    <Donut bind:counters="{audits[auditIndex].byCounters}" />
-
-
-
-    <AuditForm 
-        audit="{audits[auditIndex]}" 
-        referential="{referential}" 
-        on:updated="{updateAudit}" />
+    <h1>Référentiel Général d'écoconception de Services Numériques</h1>
+    <h2>Version {referential.version} | {referential.criteres.length} critères</h2>
+    {#if Object.keys(audits[index].byCriteria).length > 0}
+        <Stats bind:counters="{audits[index].byCounters}" bind:nbOfCriteria="{referential.criteres.length}" />
+        <Donut bind:counters="{audits[index].byCounters}" />
+    {/if}
+    <AuditForm audit="{audits[index]}" referential="{referential}" on:updated="{updateAudit}" />
 {/if}
+
+<style>
+    :root {
+        font-size: 16px;
+    }
+    body {
+        font-family: sans-serif;
+        font-size: 1em;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 1.375em;
+    }
+    h3 {
+        font-size: 1.25em;
+    }
+</style>
