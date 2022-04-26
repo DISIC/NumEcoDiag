@@ -39,6 +39,7 @@
 </script>
 
 <form class="criteria">
+    <h2>Version {referential.version} | {referential.criteres.length} critères</h2>
     {#each referential.criteres as critere}
 		<div class="criterion" id="{critere.id}">
 			<p class="criterion__title">{critere.id} : {critere.critere}</p>
@@ -74,9 +75,6 @@
 </form>
 
 <style>
-	.criteria {
-		max-width: 40ch;
-	}
 	.criterion + .criterion {
 		margin-top: 3rem;
 	}
@@ -112,6 +110,5 @@
 	}
 	button {
 		margin-top: 1.5em;
-		max-width: 100px;
 	}
 </style>

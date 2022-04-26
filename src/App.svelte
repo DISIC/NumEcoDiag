@@ -4,10 +4,9 @@
 
         import VersionSelect from './components/VersionSelect.svelte';
         import AuditForm from './components/AuditForm.svelte';
-        import Stats from './components/Stats.svelte'
-        import Donut from './components/Donut.svelte'
+        import Results from './components/Results.svelte';
         
-        const availableVersions = ['beta', '1.0']; // Available versions (stored in /public/rgesn)
+        const versions = ['beta', '1.0']; // Available versions (stored in /public/rgesn)
         let referential; // RGESN content
         let index = 0; // Current audit index identifier
         let audits = [ // Audits progression (saved with localStorage for dev, then into browser.storage)
@@ -139,32 +138,19 @@
 
 </script>
 
-<VersionSelect availableVersions="{availableVersions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
-{#if referential}
+<main class="app">
     <h1>Référentiel Général d'écoconception de Services Numériques</h1>
-    <h2>Version {referential.version} | {referential.criteres.length} critères</h2>
-    {#if Object.keys(audits[index].byCriteria).length > 0}
-        <Stats bind:counters="{audits[index].byCounters}" bind:nbOfCriteria="{referential.criteres.length}" />
-        <Donut bind:counters="{audits[index].byCounters}" />
+    <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
+    {#if referential}
+        {#if Object.keys(audits[index].byCriteria).length > 0}
+            <Results bind:counters="{audits[index].byCounters}" bind:nbOfCriteria="{referential.criteres.length}" />
+        {/if}
+        <AuditForm audit="{audits[index]}" referential="{referential}" on:updated="{updateAudit}" />
     {/if}
-    <AuditForm audit="{audits[index]}" referential="{referential}" on:updated="{updateAudit}" />
-{/if}
+</main>
 
 <style>
-    :root {
-        font-size: 16px;
-    }
-    body {
-        font-family: sans-serif;
-        font-size: 1em;
-    }
-    h1 {
-        font-size: 1.5em;
-    }
-    h2 {
-        font-size: 1.375em;
-    }
-    h3 {
-        font-size: 1.25em;
+    .app {
+        max-width: 65ch;
     }
 </style>

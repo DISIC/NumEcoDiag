@@ -1,7 +1,7 @@
 <script>
 
 	import { createEventDispatcher } from 'svelte';
-	export let availableVersions;
+	export let versions;
 
 	let dispatch = createEventDispatcher();
 
@@ -17,7 +17,7 @@
 	<label>
 		Version RGESN à utiliser :
 		<select name="version-selector">
-			{#each availableVersions as version}
+			{#each versions as version}
 				<option value="{version}">
 					{version}
 				</option>

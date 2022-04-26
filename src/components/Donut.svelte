@@ -1,12 +1,13 @@
 <script>
 
 	import { onMount } from 'svelte';
+    
 	export let counters;
 
 	$: assessed = counters.satisfied + counters.rejected + counters.notApplicable;
-	$: satisfiedRate = (counters.satisfied / assessed) * 100; 
-	$: rejectedRate = (counters.rejected / assessed) * 100; 
-	$: notApplicableRate = (counters.notApplicable / assessed) * 100; 
+    $: satisfiedRate = ((counters.satisfied / assessed) * 100).toFixed(2); 
+	$: rejectedRate = ((counters.rejected / assessed) * 100).toFixed(2); 
+	$: notApplicableRate = ((counters.notApplicable / assessed) * 100).toFixed(2); 
 	
 	onMount(() => updateDonut([satisfiedRate, rejectedRate, notApplicableRate]));
 
@@ -47,8 +48,6 @@
 <style>
 	.donut {
 		fill: none;
-		height: 100px;
-		width: 100px;
 		stroke-width: 35px;
 	}
 	circle {

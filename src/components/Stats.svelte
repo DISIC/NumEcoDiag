@@ -4,72 +4,55 @@
     export let nbOfCriteria;
 
     $: assessed = counters.satisfied + counters.rejected + counters.notApplicable;
-    $: conformity = counters.satisfied / ((assessed) - (counters.notApplicable)) * 100;
-    $: satisfiedRate = (counters.satisfied / assessed) * 100; 
-	$: rejectedRate = (counters.rejected / assessed) * 100; 
-	$: notApplicableRate = (counters.notApplicable / assessed) * 100; 
+    $: conformity = (counters.satisfied / ((assessed) - (counters.notApplicable)) * 100).toFixed(2);
 
 </script>
 
 <table>
-    <caption>Critères</caption>
-    <thead>
-        <tr>
-            <th>Total</th>
-            <th>Évalué(s)</th>
-            <th>À évaluer</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{nbOfCriteria}</td>
-            <td>{assessed}</td>
-            <td>{nbOfCriteria - (assessed)}</td>
-        </tr>
-    </tbody>
+    <tr>
+      <th>Total critères</th>
+      <td>{nbOfCriteria}</td>
+    </tr>
+    <tr>
+      <th>Évalué(s)</th>
+      <td>{assessed}</td>
+    </tr>
+    <tr>
+      <th>À évaluer</th>
+      <td>{nbOfCriteria - (assessed)}</td>
+    </tr>
+    <tr>
+        <th>Validé(s)</th>
+        <td>{counters.satisfied}</td>
+    </tr>
+    <tr>
+        <th>Rejeté(s)</th>
+        <td>{counters.rejected}</td>
+    </tr>
+    <tr>
+        <th>Non applicable(s)</th>
+        <td>{counters.notApplicable}</td>
+    </tr>
+    <tr>
+        <th>Conformité</th>
+        <td>{conformity} %</td>
+    </tr>
 </table>
-<table>
-    <caption>Résultats</caption>
-    <thead>
-        <tr>
-            <th>Validé(s)</th>
-            <th>Rejeté(s)</th>
-            <th>Non applicable(s)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{counters.satisfied} <span>(soit {satisfiedRate} %)</span></td>
-            <td>{counters.rejected} <span>(soit {rejectedRate} %)</span></td>
-            <td>{counters.notApplicable} <span>(soit {notApplicableRate} %)</span></td>
-        </tr>
-    </tbody>
-</table>
-
+  
 <style>
     table {
         border-collapse: collapse;
-        max-width: 65ch;
-        text-align: center;
-        width: 100%;
-    }
-    table + table {
-        margin-top: 1em;
-    }
-    caption {
-        font-weight: bold; 
-        margin-bottom: 0.25em;
-        text-align: left;
     }
     th, td {
-        border: solid 1px;
-        min-width: 150px;
-        padding: 0.5em;
+        border-bottom: solid 1px;
+        padding: 0.25em;
+        text-align: left;
     }
     th {
+        min-width: 200px;
         font-weight: normal;
     }
-    span {
-        font-size: 0.75em;
+    td {
+        text-align: right;
     }
 </style>
