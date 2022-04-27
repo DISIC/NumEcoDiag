@@ -25,7 +25,7 @@
 
         function getRGESN(versionToLoad) {
             return new Promise((resolve, reject) => {
-                fetch(`/rgesn/${versionToLoad}.json`)
+                fetch(`./rgesn/${versionToLoad}.json`)
                     .then((resp) => { 
                         if(resp.ok) {
                             resp.text()
