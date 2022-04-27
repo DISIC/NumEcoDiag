@@ -9,7 +9,7 @@
         const versions = ['beta']; // Available versions (stored in /public/rgesn)
         let referential; // RGESN content
         let index = 0; // Current audit index identifier
-        let audits = [ // Audits progression (saved with localStorage for dev, then into browser.storage)
+        let audits = [ // Audits progression
             {  
                 byCriteria: {},
                 byCounters: {
@@ -118,20 +118,18 @@
             saveAudits();
         }
     
-        // Temp : uses localStorage for dev, then browser.storage
         function saveAudits() {
-            localStorage.setItem('audits', JSON.stringify(audits));
-            localStorage.setItem('index', index);
+            chrome.storage.local.set({'audits': JSON.stringify(audits)});
+            chrome.storage.local.set({'index': index});
         }	
 
-        // Temp : uses localStorage for dev, then browser.storage
         function getAudits() {
-            const storedAudits = JSON.parse(localStorage.getItem('audits'));
-            const storedindex = JSON.parse(localStorage.getItem('index'));
-            if(storedAudits !== null && storedindex !== null) {
-                index = storedindex;
-                audits = storedAudits;
-            }
+            chrome.storage.local.get().then((data) => {
+                if(data.audits !== undefined && data.index !== undefined) {
+                    audits = JSON.parse(data.audits);
+                    index = JSON.parse(data.index);
+                }
+            });
         }
 
         function logError(error) {
@@ -158,6 +156,6 @@
 
 <style>
     .app {
-        max-width: 65ch;
+        width: 500px;
     }
 </style>
