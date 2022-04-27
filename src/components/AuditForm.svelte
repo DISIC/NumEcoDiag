@@ -7,6 +7,15 @@
     export let audit;
 
     let dispatch = createEventDispatcher();
+    let lastTheme = '';
+
+    function isAnotherTheme(currentTheme){
+        if(currentTheme !== lastTheme) {
+            lastTheme = currentTheme
+            return true;
+        }
+        return false;
+    }
 
 	function updateAnswer(criterionId, criterionValue = undefined) {
 		dispatch(
@@ -41,8 +50,11 @@
 <form class="criteria">
     <h2>Version {referential.version} | {referential.criteres.length} critères</h2>
     {#each referential.criteres as critere}
+        {#if isAnotherTheme(critere.thematique)}
+            <h3>{critere.thematique}</h3>
+        {/if}
 		<div class="criterion" id="{critere.id}">
-			<p class="criterion__title">{critere.id} : {critere.critere}</p>
+			<p class="criterion__title"><span>{critere.id}</span> : {critere.critere}</p>
 			<div class="criterion__status">
 				<label>
 					<input
@@ -82,6 +94,9 @@
 		content: "\2014";
 		margin-right: 0.5em;
 	}
+    .criterion__title span {
+        font-weight: bold;
+    }
 	.criterion__status {
 		align-items: center;
 		display: grid;
