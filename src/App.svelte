@@ -52,15 +52,22 @@
         function changeRGESN(version) {
             if(version !== audits[index].selectedVersion) {
                 if(confirm(`Vous allez passer de la version ${audits[index].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[index].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
-                    audits[index].byCriteria = {};
+                    resetProgression();
                     audits[index].selectedVersion = version;
-                    saveAudits();
                     getRGESN(version);
                 }
             }
             else {
                 alert(`Vous utilisez déjà la version ${version} du référentiel.`);
             }
+        }
+
+        function resetProgression() {
+            audits[index].byCriteria = {};
+            audits[index].byCounters.satisfied = 0;
+            audits[index].byCounters.rejected = 0;
+            audits[index].byCounters.notApplicable = 0;
+            saveAudits();
         }
 
         function updateAudit(e) { 
@@ -142,10 +149,10 @@
     <h1>Référentiel Général d'écoconception de Services Numériques</h1>
     <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
     {#if referential}
-        {#if Object.keys(audits[index].byCriteria).length > 0}
+        {#key audits[index].selectedVersion}
             <Results bind:counters="{audits[index].byCounters}" bind:nbOfCriteria="{referential.criteres.length}" />
-        {/if}
-        <AuditForm audit="{audits[index]}" referential="{referential}" on:updated="{updateAudit}" />
+            <AuditForm audit="{audits[index]}" referential="{referential}" on:updated="{updateAudit}" />
+        {/key}
     {/if}
 </main>
 
