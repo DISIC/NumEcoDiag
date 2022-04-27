@@ -6,7 +6,7 @@
         import AuditForm from './components/AuditForm.svelte';
         import Results from './components/Results.svelte';
         
-        const versions = ['beta', '1.0']; // Available versions (stored in /public/rgesn)
+        const versions = ['beta']; // Available versions (stored in /public/rgesn)
         let referential; // RGESN content
         let index = 0; // Current audit index identifier
         let audits = [ // Audits progression (saved with localStorage for dev, then into browser.storage)
