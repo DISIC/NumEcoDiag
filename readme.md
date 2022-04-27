@@ -15,10 +15,6 @@ Permettre au plus grand nombre d'auditer par leurs propres moyens et depuis leur
 * [fait] Sauvegarder côté client chaque changement
 * [fait] Générer une synthèse des résultats
 
-Dysfonctionnements connus à corriger :
-
-* L'interface n'est pas réinitialisée lors du changement de la version RGESN à utiliser.
-
 À implémenter par la suite ?
 
 * Audits simultanés (note : terrain préparé via la gestion d'un tableau d'audits)
