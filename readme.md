@@ -36,6 +36,12 @@ Projet __initialement__ conçu en tant que webApp traditionnelle rendue côté c
 * La possibilité de lire les référentiels depuis les ressources empaquetées reste à confirmer.
 * En théorie, le portage devrait pouvoir se faire aisément aussi bien sur Chrome et sur Firefox.
 
+## Tester le projet
+
+1. Installer nodeJS (v16 minimum) et NPM (inclu avec NodeJS).
+2. Dans un terminal, depuis le dossier téléchargé, lancer la commande `npm install` pour télécharger / installer les dépendances puis `npm run dev` pour démarrer le serveur.
+3. Ouvrir la page http://localhost:8080.
+
 ## Licence
 
 Projet : À définir.
