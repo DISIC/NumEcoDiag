@@ -48,7 +48,10 @@
 </script>
 
 <form class="criteria">
-    <h2>Version {referential.version} | {referential.criteres.length} critères</h2>
+    <h2>
+        Référentiel version {referential.version}<br/>
+        {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
+    </h2>
     {#each referential.criteres as critere}
         {#if isAnotherTheme(critere.thematique)}
             <h3>{critere.thematique}</h3>
