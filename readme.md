@@ -23,28 +23,17 @@ Permettre au plus grand nombre d'auditer par leurs propres moyens et depuis leur
 * Ajouter une synthèse / conclusion générale
 * Exporter l'audit (sous quels formats ?)
 
-## Technologies
-
-Projet __initialement__ conçu en tant que webApp traditionnelle rendue côté client avec [Svelte](https://svelte.dev/) afin d'en faciliter le développement, l'objectif étant d'en faire une __WebExtension__.
-
-À ce sujet :
-* Il sera nécessaire de revoir la gestion du stockage côté client (API différentes).
-* La possibilité de lire les référentiels depuis les ressources empaquetées reste à confirmer.
-* En théorie, le portage devrait pouvoir se faire aisément aussi bien sur Chrome et sur Firefox.
-
-## Tester le projet
+## Tester l'extension avec Google Chrome
 
 1. Installer nodeJS (v16 minimum) et NPM (inclu avec NodeJS).
-2. Dans un terminal, depuis le dossier téléchargé, lancer la commande `npm install` pour télécharger / installer les dépendances puis `npm run dev` pour démarrer le serveur.
-3. Ouvrir la page http://localhost:8080.
+2. Dans un terminal, depuis le dossier téléchargé, lancer la commande `npm install` pour télécharger / installer les dépendances puis `npm run build` pour construire l'application depuis les sources fournies.
+3. Lancer Google Chrome et naviguer à l'adresse `chrome://extensions/`.
+4. Si nécessaire, activer le `Mode développeur`.
+5. Cliquer sur le bouton `Charger l'extension non empaquetée` puis sélectionner le dossier de l'extension.
+6. L'accès au popup se fait depuis la partie supérieure droite du navigateur.
 
 ## Licence
 
 Projet : À définir.
 
 __Important : les données RGESN bêta sont sous Licence Ouverte ETALAB v2.0. À mentionner au sein même du projet ?__
-
-## Notes
-
-* Est-il utile de conserver les deux versions à terme (application web + WebExtension) ?
-* Faut-il réfléchir à une version plus élaborée pour les usages internes ? 
