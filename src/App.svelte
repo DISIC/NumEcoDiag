@@ -143,7 +143,7 @@
 
 </script>
 
-<main class="app">
+<main>
     <h1>Référentiel Général d'Écoconception de Services Numériques</h1>
     <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
     {#if referential}
@@ -155,7 +155,14 @@
 </main>
 
 <style>
-    .app {
+    :global(main) {
         width: 500px;
+    }
+    :global(h2) {
+        margin-top: 2em;
+    }
+    :global(h3) {
+        margin: 2em 0;
+        border-bottom: dotted 1px;
     }
 </style>

@@ -35,7 +35,7 @@
     </tr>
     <tr>
         <th>Conformité</th>
-        <td>{conformity !== 'NaN' ? conformity + '%' : 'Indisponible'}</td>
+        <td>{conformity !== 'NaN' ? conformity + ' %' : 'Indisponible'}</td>
     </tr>
 </table>
   

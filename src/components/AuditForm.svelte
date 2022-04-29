@@ -91,7 +91,7 @@
 
 <style>
 	.criterion + .criterion {
-		margin-top: 3rem;
+		margin-top: 2.5rem;
 	}
 	.criterion__title::before {
 		content: "\2014";
@@ -113,6 +113,7 @@
 	}
 	input {
 		margin: 0.5em auto auto auto;
+        vertical-align: bottom;
 	}
 	input:checked + span {
 		color: var(--cl-black);
