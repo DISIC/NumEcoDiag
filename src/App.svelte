@@ -144,7 +144,7 @@
 </script>
 
 <main class="app">
-    <h1>Référentiel Général d'écoconception de Services Numériques</h1>
+    <h1>Référentiel Général d'Écoconception de Services Numériques</h1>
     <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
     {#if referential}
         {#key audits[index].selectedVersion}
