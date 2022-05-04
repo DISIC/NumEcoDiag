@@ -54,6 +54,7 @@
                 if(confirm(`Vous allez passer de la version ${audits[index].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[index].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
                     resetProgression();
                     audits[index].selectedVersion = version;
+                    saveAudits();
                     getRGESN(version);
                 }
             }
@@ -67,7 +68,6 @@
             audits[index].byCounters.satisfied = 0;
             audits[index].byCounters.rejected = 0;
             audits[index].byCounters.notApplicable = 0;
-            saveAudits();
         }
 
         function updateAudit(e) { 
@@ -129,6 +129,7 @@
                     audits = JSON.parse(data.audits);
                     index = JSON.parse(data.index);
                 }
+                getRGESN(audits[index].selectedVersion);
             });
         }
 
@@ -139,8 +140,7 @@
     /* ### PROCEDURAL ### */
 
         getAudits();
-        getRGESN(audits[index].selectedVersion);
-
+        
 </script>
 
 <main>
