@@ -46,15 +46,14 @@
                 )
             })
             .then((data) => referential = data)
-            .catch((error) => logError(error));	
+            .catch((error) => console.error(error));	
         }
 
         function changeRGESN(version) {
             if(version !== audits[index].selectedVersion) {
-                if(confirm(`Vous allez passer de la version ${audits[index].selectedVersion} à la version ${version} du référentiel. Les données d'audit saisies en version ${audits[index].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
-                    resetProgression();
+                if(confirm(`Vous allez passer de la version ${audits[index].selectedVersion} à la version ${version} du référentiel RGESN. Les données d'audit saisies en version ${audits[index].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
                     audits[index].selectedVersion = version;
-                    saveAudits();
+                    resetAudit();
                     getRGESN(version);
                 }
             }
@@ -63,11 +62,12 @@
             }
         }
 
-        function resetProgression() {
+        function resetAudit() {
             audits[index].byCriteria = {};
             audits[index].byCounters.satisfied = 0;
             audits[index].byCounters.rejected = 0;
             audits[index].byCounters.notApplicable = 0;
+            chrome.storage.local.set({'audits': JSON.stringify(audits)});;
         }
 
         function updateAudit(e) { 
@@ -115,32 +115,24 @@
                     delete audits[index].byCriteria[criterion.id];
                 }
             }
-            saveAudits();
-        }
-    
-        function saveAudits() {
             chrome.storage.local.set({'audits': JSON.stringify(audits)});
-            chrome.storage.local.set({'index': index});
-        }	
+        }
 
         function getAudits() {
-            chrome.storage.local.get().then((data) => {
-                if(data.audits !== undefined && data.index !== undefined) {
-                    audits = JSON.parse(data.audits);
-                    index = JSON.parse(data.index);
-                }
-                getRGESN(audits[index].selectedVersion);
+            return new Promise((resolve ,reject) => {
+                chrome.storage.local.get(['audits']).then((data) =>
+                    data.audits !== undefined ? resolve(data) : reject('Data not found')                        
+                );
             });
         }
 
-        function logError(error) {
-            console.error(error);
-        };
-
     /* ### PROCEDURAL ### */
 
-        getAudits();
-        
+        getAudits()
+            .then(data => audits = JSON.parse(data.audits))
+            .catch((warning) => console.warn(warning))
+                .finally(() => getRGESN(audits[index].selectedVersion));
+   
 </script>
 
 <main>
