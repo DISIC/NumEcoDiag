@@ -145,7 +145,9 @@
 
 <main>
     <h1>Référentiel Général d'Écoconception de Services Numériques</h1>
-    <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
+    {#if versions.length > 1}
+        <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
+    {/if}
     <button on:click="{resetAudit}">Réinitialiser l'audit</button>
     {#if referential}
         {#key render }
