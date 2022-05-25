@@ -14,28 +14,24 @@
       <td>{nbOfCriteria}</td>
     </tr>
     <tr>
-      <th>À évaluer</th>
+      <th class="donut-ref notEvaluated">À évaluer</th>
       <td>{nbOfCriteria - (assessed)}</td>
     </tr>
     <tr>
-      <th>Évalué(s)</th>
-      <td>{assessed}</td>
-    </tr>
-    <tr>
-        <th class="donut-ref satisfied">Validé(s)</th>
+        <th class="donut-ref satisfied">Conformes</th>
         <td>{counters.satisfied}</td>
     </tr>
     <tr>
-        <th class="donut-ref rejected">Rejeté(s)</th>
+        <th class="donut-ref rejected">Rejetés</th>
         <td>{counters.rejected}</td>
     </tr>
     <tr>
-        <th class="donut-ref not-applicable">Non applicable(s)</th>
+        <th class="donut-ref not-applicable">Non applicables</th>
         <td>{counters.notApplicable}</td>
     </tr>
     <tr>
-        <th>Conformité</th>
-        <td>{conformity !== 'NaN' ? conformity + ' %' : 'Indisponible'}</td>
+        <th>Conformité sur {assessed} critère(s)</th>
+        <td>{conformity !== 'NaN' ? conformity + ' %' : 'Indisp.'}</td>
     </tr>
 </table>
   
@@ -48,14 +44,17 @@
         vertical-align: middle;
         width: 9px;
     }
+    .donut-ref.notEvaluated::before {
+        background-color: lightgray;
+    }
     .donut-ref.satisfied::before {
-        background-color: green;
+        background-color: lightgreen;
     }
     .donut-ref.rejected::before {
-        background-color: red;
+        background-color: lightcoral;
     }
     .donut-ref.not-applicable::before {
-        background-color: gray;
+        background-color: lightskyblue;
     }
     table {
         border-collapse: collapse;

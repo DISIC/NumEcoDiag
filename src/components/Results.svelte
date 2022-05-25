@@ -11,7 +11,7 @@
 <section class="results">
     <h2>Résultats</h2>
     <div>
-        <Donut counters="{counters}" />
+        <Donut counters="{counters}" nbOfCriteria="{nbOfCriteria}" />
         <Stats counters="{counters}" nbOfCriteria="{nbOfCriteria}" />
     </div>
 </section>
