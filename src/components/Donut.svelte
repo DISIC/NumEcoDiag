@@ -50,10 +50,10 @@
 
 <div class="donut" aria-hidden="true" focusable="false">
 	<svg>
-		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px; stroke: lightgray;"></circle>
-		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px; stroke: lightgreen;"></circle>
-		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px; stroke: lightcoral;"></circle>
-		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px; stroke: lightskyblue;"></circle>
+		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px;"></circle>
+		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px;"></circle>
+		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px;"></circle>
+		<circle cx="75" cy="75" r="50" style="stroke-dasharray: 0px, 0px;"></circle>
 	</svg>
 </div>
 
@@ -61,5 +61,17 @@
 	.donut {
 		fill: none;
 		stroke-width: 35px;
+	}
+	.donut circle:first-of-type {
+		stroke: var(--cl-lightgray);
+	}
+	.donut circle:nth-of-type(2) {
+		stroke: var(--cl-green);
+	}
+	.donut circle:nth-of-type(3) {
+		stroke: var(--cl-red);
+	}
+	.donut circle:last-of-type {
+		stroke: var(--cl-blue);
 	}
 </style>

@@ -115,7 +115,7 @@
 	}
 	label {
 		font-size: 0.9em;
-		color: var(--cl-gray);
+		color: var(--cl-darkgray);
 	}
 	input {
 		margin: 0.5em auto auto auto;
@@ -131,7 +131,7 @@
 		accent-color: var(--cl-red);
 	}
 	label:last-of-type input:checked {
-		accent-color: var(--cl-gray);
+		accent-color: var(--cl-blue);
 	}
 	button {
 		margin-top: 1.5em;

@@ -45,16 +45,16 @@
         width: 9px;
     }
     .donut-ref.notEvaluated::before {
-        background-color: lightgray;
+        background-color: var(--cl-lightgray);
     }
     .donut-ref.satisfied::before {
-        background-color: lightgreen;
+        background-color: var(--cl-green);
     }
     .donut-ref.rejected::before {
-        background-color: lightcoral;
+        background-color: var(--cl-red);
     }
     .donut-ref.not-applicable::before {
-        background-color: lightskyblue;
+        background-color: var(--cl-blue);
     }
     table {
         border-collapse: collapse;

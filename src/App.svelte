@@ -159,6 +159,13 @@
 
 <style>
     :global(main) {
+        --cl-black: #000;
+        --cl-blue: #11d;
+        --cl-darkgray: #444;
+        --cl-green: green;
+        --cl-lightgray: #ddd;
+        --cl-red: #d11;
+        font-family: sans-serif;
         font-size: 16px;
         width: 500px;
     }
@@ -166,7 +173,7 @@
         margin-top: 2em;
     }
     :global(h3) {
-        margin: 2em 0;
         border-bottom: dotted 1px;
+        margin: 2em 0;
     }
 </style>
