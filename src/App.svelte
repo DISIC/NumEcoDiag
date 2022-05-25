@@ -17,9 +17,10 @@
                     rejected: 0,
                     notApplicable: 0
                 },
-                selectedVersion: 'beta',
+                selectedVersion: 'beta', // By default.
             }
         ];
+        let render = false; // Makes Results & AuditForm components reactives
 
     /* ### FUNCTIONS ### */
 
@@ -49,25 +50,32 @@
             .catch((error) => console.error(error));	
         }
 
-        function changeRGESN(version) {
-            if(version !== audits[index].selectedVersion) {
-                if(confirm(`Vous allez passer de la version ${audits[index].selectedVersion} à la version ${version} du référentiel RGESN. Les données d'audit saisies en version ${audits[index].selectedVersion} seront perdues. Souhaitez-vous poursuivre ?`)) {
-                    audits[index].selectedVersion = version;
-                    resetAudit();
-                    getRGESN(version);
+        function changeRGESN(versionToApply) {
+            if(versionToApply !== audits[index].selectedVersion) {
+                if(resetAudit()) {
+                    audits[index].selectedVersion = versionToApply;
+                    getRGESN(versionToApply);
                 }
             }
             else {
-                alert(`Vous utilisez déjà la version ${version} du référentiel.`);
+                alert("Vous utilisez déjà cette version du référentiel.");
             }
         }
 
         function resetAudit() {
-            audits[index].byCriteria = {};
-            audits[index].byCounters.satisfied = 0;
-            audits[index].byCounters.rejected = 0;
-            audits[index].byCounters.notApplicable = 0;
-            chrome.storage.local.set({'audits': JSON.stringify(audits)});;
+            if(confirm("Attention : cette action entraîne la perte de toutes les données non exportées saisies jusqu'à présent. Souhaitez-vous poursuivre ?")) {
+                // Udpates runtime values
+                audits[index].byCriteria = {};
+                audits[index].byCounters.satisfied = 0;
+                audits[index].byCounters.rejected = 0;
+                audits[index].byCounters.notApplicable = 0;
+                // Udpates storage
+                chrome.storage.local.set({'audits': JSON.stringify(audits)});
+                 // Updates view
+                render = !render;
+                return true;
+            }
+            return false
         }
 
         function updateAudit(e) { 
@@ -138,8 +146,9 @@
 <main>
     <h1>Référentiel Général d'Écoconception de Services Numériques</h1>
     <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
+    <button on:click="{resetAudit}">Réinitialiser l'audit</button>
     {#if referential}
-        {#key audits[index].selectedVersion}
+        {#key render }
             <Results bind:counters="{audits[index].byCounters}" bind:nbOfCriteria="{referential.criteres.length}" />
             <AuditForm audit="{audits[index]}" referential="{referential}" on:updated="{updateAudit}" />
         {/key}
