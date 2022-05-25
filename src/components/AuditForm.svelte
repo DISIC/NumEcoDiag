@@ -90,7 +90,7 @@
 					<span>Non applicable</span>
 				</label>   
 			</div>
-			<button on:click="{resetAnswer}">Effacer la réponse</button>
+			<button on:click="{resetAnswer}">Annuler cette évaluation</button>
 		</div>
 	{/each}
 </form>
