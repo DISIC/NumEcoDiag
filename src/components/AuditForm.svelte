@@ -57,7 +57,13 @@
             <h3>{critere.thematique}</h3>
         {/if}
 		<div class="criterion" id="{critere.id}">
-			<p class="criterion__title"><span>{critere.id}</span> : {critere.critere}</p>
+			<p class="criterion__title">
+				<span>{critere.id}</span> : 
+				{critere.critere}
+				<a href="{critere.url}" target="_blank" title="Ouvrir le permalien du critère dans un nouvel onglet pour en apprendre plus">
+					<svg viewBox="0 0 24 24"><path d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></svg>
+				</a>		
+			</p>
 			<div class="criterion__status">
 				<label>
 					<input
@@ -129,5 +135,11 @@
 	}
 	button {
 		margin-top: 1.5em;
+	}
+	svg {
+		height: 18px;
+		margin-left: 0.25em;
+		vertical-align: middle;
+		width: 18px;
 	}
 </style>

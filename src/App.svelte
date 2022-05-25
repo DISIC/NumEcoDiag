@@ -148,6 +148,7 @@
 
 <style>
     :global(main) {
+        font-size: 16px;
         width: 500px;
     }
     :global(h2) {

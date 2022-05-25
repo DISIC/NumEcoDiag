@@ -4,7 +4,7 @@ Côté dev
 - Permettre la réinitialisation de tout l'audit (bouton unique)
 - Assurer la compatibilité avec Firefox
 - Intégrer la visualisation des critères non évalués au donut
-- Ajouter un permalien sur chaque critère
+- Ajouter un permalien sur chaque critère (done)
 - Epurer le fichier JSON des données inexploitées
 - Revoir le wording du bouton "effacer la réponse"
 - Ne pas proposer la versio bêta comme disponible (masquer l'option si un seul référentiel est disponible ?)
