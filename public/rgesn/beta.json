@@ -587,7 +587,7 @@
     },{
       "id": "8.6",
       "url": "https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/critere/8.6/",
-      "critere": "Le service numérique utilise-t-il un hébergement qui a un WUE (Water Usage\nEffectiveness) inférieur à 1 L/kWh ?",
+      "critere": "Le service numérique utilise-t-il un hébergement qui a un WUE (Water Usage Effectiveness) inférieur à 1 L/kWh ?",
       "thematique": "Hébergement",
       "objectif": "Connaitre le WUE de son hébergement, indicateur souvent peu pris en compte.\nRéduire ou limiter la consommation d’eau nécessaire au refroidissement des serveurs.",
       "miseEnOeuvre": "Sélectionner un hébergeur dont le WUE est inférieur à 1 L/kWh.",

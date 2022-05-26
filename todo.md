@@ -1,6 +1,6 @@
 Côté dev
 
-- Permettre l'export des données au format CSV
+- [DONE] Permettre l'export des données au format CSV
 - [DONE] Permettre la réinitialisation de tout l'audit (bouton unique)
 - Assurer la compatibilité avec Firefox
 - [DONE] Intégrer la visualisation des critères non évalués au donut
@@ -11,3 +11,4 @@ Côté dev
 - Ne pas proposer la versio bêta comme disponible.
 - Afficher les crédits (Développé par Temesis pour la DINUM ?)
 - Fixer les licences (Etalab pour la donnée, MIT pour le code ?)
+- Créer un composant pour les options

@@ -134,6 +134,44 @@
             });
         }
 
+        function exportAuditAsCSV() {
+            let exportCSV = 'conforme;rejeté;non applicable;id;thématique;critère;\n'; // CSV header part
+            const assessedIds = Object.keys(audits[index].byCriteria);
+            const assessedValues = Object.values(audits[index].byCriteria);
+            for(const criterion of referential.criteres) {
+                criterion.value = null;
+                for(let i = 0, l = assessedIds.length; i < l; i++) {
+                    if(criterion.id === assessedIds[i]) { // Criterion assessed? Reports state!
+                        criterion.value = assessedValues[i].state;
+                        break;
+                    }
+                }
+                // CSV criterion state part
+                switch(criterion.value) {
+                    case 'satisfied':
+                       exportCSV += 'X;;;';
+                        break;
+                    case 'rejected':
+                        exportCSV += ';X;;';
+                        break;
+                    case 'not-applicable':
+                        exportCSV += ';;X;';
+                        break;
+                    default:
+                        exportCSV += ';;;';
+                        break;   
+                }
+                // CSV criterion info part
+                exportCSV += `${criterion.id};${criterion.thematique};${criterion.critere};\n`
+            }
+            let exportedBlob = new Blob([exportCSV], {});
+            let aElm = document.createElement('a');
+            aElm.setAttribute('href', window.URL.createObjectURL(exportedBlob));
+            aElm.setAttribute('download', 'rgesn-export.csv');
+            aElm.click();
+            aElm.remove();
+        }
+
     /* ### PROCEDURAL ### */
 
         getAudits()
@@ -145,10 +183,12 @@
 
 <main>
     <h1>Référentiel Général d'Écoconception de Services Numériques</h1>
+    <h2>Options</h2>
     {#if versions.length > 1}
         <VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
     {/if}
-    <button on:click="{resetAudit}">Réinitialiser l'audit</button>
+    <button on:click="{exportAuditAsCSV}">Exporter (CSV)</button>
+    <button on:click="{resetAudit}">Réinitialiser</button>
     {#if referential}
         {#key render }
             <Results bind:counters="{audits[index].byCounters}" bind:nbOfCriteria="{referential.criteres.length}" />
