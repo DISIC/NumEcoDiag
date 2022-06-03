@@ -21,6 +21,7 @@
             }
         ];
         let render = false; // Makes Results & AuditForm components reactives
+        const env = window.browser === undefined ? window.chrome : window.browser; // Makes extension cross platform
 
     /* ### FUNCTIONS ### */
 
@@ -70,7 +71,7 @@
                 audits[index].byCounters.rejected = 0;
                 audits[index].byCounters.notApplicable = 0;
                 // Udpates storage
-                chrome.storage.local.set({'audits': JSON.stringify(audits)});
+                env.storage.local.set({'audits': JSON.stringify(audits)});
                  // Updates view
                 render = !render;
                 return true;
@@ -123,12 +124,12 @@
                     delete audits[index].byCriteria[criterion.id];
                 }
             }
-            chrome.storage.local.set({'audits': JSON.stringify(audits)});
+            env.storage.local.set({'audits': JSON.stringify(audits)});
         }
 
         function getAudits() {
             return new Promise((resolve ,reject) => {
-                chrome.storage.local.get(['audits']).then((data) =>
+                env.storage.local.get(['audits']).then((data) =>
                     data.audits !== undefined ? resolve(data) : reject('Data not found')                        
                 );
             });
