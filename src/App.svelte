@@ -2,10 +2,11 @@
 
 	/* ### VARIABLES ### */
 
-		import MainNav from './components/MainNav.svelte';
-		import VersionSelect from './components/VersionSelect.svelte';
-		import AuditForm from './components/AuditForm.svelte';
+		import Navigation from './components/Navigation.svelte';
 		import Results from './components/Results.svelte';
+		import AuditForm from './components/AuditForm.svelte';
+		import Options from './components/Options.svelte';
+		import About from './components/About.svelte';
 		
 		const versions = ['beta']; // Available versions (stored in /public/rgesn)
 		let referential; // RGESN content
@@ -136,7 +137,7 @@
 			});
 		}
 
-		function exportAuditAsCSV() {
+		function exportAudit() {
 			let exportCSV = 'conforme;rejeté;non applicable;id;thématique;critère;\n'; // CSV header part
 			const assessedIds = Object.keys(audits[index].byCriteria);
 			const assessedValues = Object.values(audits[index].byCriteria);
@@ -184,26 +185,25 @@
 </script>
 
 <main>
-	<MainNav />
+	<Navigation />
 	<h1>Référentiel Général d'Écoconception de Services Numériques</h1>
 	{#if referential}
 		{#key render }
-			<Results bind:counters="{audits[index].byCounters}" bind:nbOfCriteria="{referential.criteres.length}" />
-			<AuditForm audit="{audits[index]}" referential="{referential}" on:updated="{updateAudit}" />
+			<Results 
+				bind:counters="{audits[index].byCounters}"
+				bind:nbOfCriteria="{referential.criteres.length}" />
+			<AuditForm 
+				audit="{audits[index]}" 
+				referential="{referential}" 
+				on:updated="{updateAudit}" />
 		{/key}
 	{/if}
-
-	<section id="options" class="page-anchor">
-		<h2>Options</h2>
-		{#if versions.length > 1}
-			<VersionSelect versions="{versions}" on:changed="{(e) => changeRGESN(e.detail.versionToApply)}" />
-		{/if}
-		<button on:click="{exportAuditAsCSV}">Exporter (CSV)</button>
-		<button on:click="{resetAudit}">Réinitialiser</button>
-	</section>
-	<section id="a-propos" class="page-anchor">
-		<h2>À propos</h2>
-	</section>
+	<Options 
+		versions="{versions}" 
+		on:changeVersion="{(e) => changeRGESN(e.detail.versionToApply)}"
+		on:resetAudit="{resetAudit}"
+		on:exportAudit="{exportAudit}" />
+	<About />
 </main>
 
 <style>
