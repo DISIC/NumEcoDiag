@@ -9,6 +9,7 @@
 		import About from './components/About.svelte';
 		
 		const versions = ['beta']; // Available versions (stored in /public/rgesn)
+		let defaultVersion = 'beta';
 		let referential; // RGESN content
 		let index = 0; // Current audit index identifier
 		let audits = [ // Audits progression
@@ -19,7 +20,7 @@
 					rejected: 0,
 					notApplicable: 0
 				},
-				selectedVersion: 'beta', // By default.
+				selectedVersion: defaultVersion, // By default.
 			}
 		];
 		let render = false; // Makes Results & AuditForm components reactives
@@ -55,8 +56,7 @@
 
 		function changeRGESN(versionToApply) {
 			if(versionToApply !== audits[index].selectedVersion) {
-				if(resetAudit()) {
-					audits[index].selectedVersion = versionToApply;
+				if(resetAudit(versionToApply)) {
 					getRGESN(versionToApply);
 				}
 			}
@@ -65,13 +65,14 @@
 			}
 		}
 
-		function resetAudit() {
+		function resetAudit(currentVersion = defaultVersion) {
 			if(confirm("Attention : cette action entraîne la perte de toutes les données non exportées saisies jusqu'à présent. Souhaitez-vous poursuivre ?")) {
 				// Udpates runtime values
 				audits[index].byCriteria = {};
 				audits[index].byCounters.satisfied = 0;
 				audits[index].byCounters.rejected = 0;
 				audits[index].byCounters.notApplicable = 0;
+				audits[index].selectedVersion = currentVersion;
 				// Udpates storage
 				env.storage.local.set({'audits': JSON.stringify(audits)});
 				 // Updates view
