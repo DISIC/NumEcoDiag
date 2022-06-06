@@ -8,7 +8,7 @@
 
 </script>
 
-<section class="results">
+<section id="resultats" class="page-anchor results">
     <h2>Résultats</h2>
     <div>
         <Donut counters="{counters}" nbOfCriteria="{nbOfCriteria}" />
