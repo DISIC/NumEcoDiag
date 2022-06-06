@@ -8,7 +8,7 @@
 
 </script>
 
-<section id="resultats" class="page-anchor results">
+<section id="resultats" class="page-anchor">
     <h2>Résultats</h2>
     <div>
         <Donut counters="{counters}" nbOfCriteria="{nbOfCriteria}" />
@@ -17,7 +17,7 @@
 </section>
 
 <style>
-    .results div {
+    div {
         align-items: center;
         display: grid;
         gap: 2em;

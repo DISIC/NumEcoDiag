@@ -47,7 +47,7 @@
 
 </script>
 
-<form id="referentiel" class="page-anchor criteria">
+<form id="referentiel" class="page-anchor">
     <h2>
         Référentiel version {referential.version}<br/>
         {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
