@@ -202,7 +202,7 @@
 	<Options 
 		versions="{versions}" 
 		on:changeVersion="{(e) => changeRGESN(e.detail.versionToApply)}"
-		on:resetAudit="{resetAudit}"
+		on:resetAudit="{(e) => resetAudit(undefined)}"
 		on:exportAudit="{exportAudit}" />
 	<About />
 </main>
