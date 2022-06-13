@@ -9,6 +9,7 @@
 
 <section id="options" class="page-anchor">
     <h2>Options</h2>
+    <!-- FEATURE DISABLED: uncomment this block when there are at least two versions of the repository.
     {#if versions.length > 1}
         <form on:submit|preventDefault="{(e) => dispatch('changeVersion', { versionToApply: e.target.elements['version-selector'].value })}">
             <label>
@@ -24,6 +25,14 @@
             <button>Valider</button>
         </form>
     {/if}
-    <button on:click="{() => dispatch('exportAudit')}">Exporter (CSV)</button>
-    <button on:click="{() => dispatch('resetAudit')}">Réinitialiser</button>
+    -->
+    <button on:click="{() => dispatch('exportAudit')}">Exporter la progression (CSV)</button>
+    <button on:click="{() => dispatch('resetAudit')}">Réinitialiser l'audit</button>
 </section>
+
+<style>
+    button {
+        display: block;
+        margin-bottom: .5em;
+    }
+</style>
