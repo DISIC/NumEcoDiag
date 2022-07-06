@@ -30,7 +30,4 @@
         content: '/';
         color: var(--cl-lightgray)
     }
-    a {
-        color: inherit;
-    }
 </style>

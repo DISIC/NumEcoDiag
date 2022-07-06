@@ -209,7 +209,7 @@
 <style>
 	:global(main) {
 		--cl-black: #000;
-		--cl-blue: #11d;
+		--cl-blue: #000091;
 		--cl-darkgray: #444;
 		--cl-green: green;
 		--cl-lightgray: #ddd;
@@ -226,11 +226,14 @@
 		margin-top: 2em;
 	}
 	:global(h3) {
-		border-bottom: dotted 1px;
+		border-bottom: dotted 1px var(--cl-blue);
 		margin: 2em 0;
 	}
 	:global(.page-anchor) {
 		padding-top: 60px;
 		margin-top: -60px;
+	}
+	:global(a) {
+		color: var(--cl-blue);
 	}
 </style>
