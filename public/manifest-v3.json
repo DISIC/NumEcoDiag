@@ -4,12 +4,12 @@
 	"description": "",
 	"version": "1.0.0",
 	"icons": {
-		"16": "./assets/rgesn-audit-tool-temp-logo-16.png",
-		"48": "./assets/rgesn-audit-tool-temp-logo-48.png",
-		"128": "./assets/rgesn-audit-tool-temp-logo-128.png"
+		"16": "./static/rgesn-audit-tool-temp-logo-16.png",
+		"48": "./static/rgesn-audit-tool-temp-logo-48.png",
+		"128": "./static/rgesn-audit-tool-temp-logo-128.png"
 	},
 	"action": {
-		"default_icon": "./assets/rgesn-audit-tool-temp-logo-48.png",
+		"default_icon": "./static/rgesn-audit-tool-temp-logo-48.png",
 		"default_popup": "./index.html",
 		"default_title": "RGESN audit tool"
 	},	
