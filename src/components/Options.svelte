@@ -1,15 +1,13 @@
 <script>
 
 	import { createEventDispatcher } from 'svelte';
-	export let versions;
-
 	let dispatch = createEventDispatcher();
 
 </script>
 
 <section id="options" class="page-anchor">
     <h2>Options</h2>
-    <!-- FEATURE DISABLED: uncomment this block when there are at least two versions of the repository.
+    <!-- FEATURE DISABLED: uncomment this block when there are at least two versions of the rgesn (require variables "versions")
     {#if versions.length > 1}
         <form on:submit|preventDefault="{(e) => dispatch('changeVersion', { versionToApply: e.target.elements['version-selector'].value })}">
             <label>

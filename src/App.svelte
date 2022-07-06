@@ -200,7 +200,6 @@
 		{/key}
 	{/if}
 	<Options 
-		versions="{versions}" 
 		on:changeVersion="{(e) => changeRGESN(e.detail.versionToApply)}"
 		on:resetAudit="{(e) => resetAudit(undefined)}"
 		on:exportAudit="{exportAudit}" />
