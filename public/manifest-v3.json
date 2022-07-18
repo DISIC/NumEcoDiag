@@ -1,6 +1,6 @@
 {
 	"manifest_version" : 3,
-	"name": "RGESN audit tool",
+	"name": "Checklist RGESN",
 	"description": "",
 	"version": "1.0.0",
 	"icons": {
@@ -11,7 +11,7 @@
 	"action": {
 		"default_icon": "./static/ecodesign-addon-logo-48x48.png",
 		"default_popup": "./index.html",
-		"default_title": "RGESN audit tool"
+		"default_title": "Checklist RGESN"
 	},	
 	"permissions": [
 		"storage"
