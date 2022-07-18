@@ -1,8 +1,11 @@
 # Checklist RGESN 
 
-## Objectif
+ Aide à l'évaluation de la conformité d’un service numérique selon le [Référentiel Général d'Écoconception de Services Numériques](https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/) (RGESN)
 
-Permettre au plus grand nombre d'auditer par leurs propres moyens et depuis leur navigateur web la conformité de leur service(s) numérique(s) au [Référentiel Général d'Écoconception de Services Numériques](https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/) (RGESN).
+## Téléchargement et installation :
+
+- Firefox : (lien à venir)
+- Chrome : (lien à venir)
 
 ## Installation manuelle
 
