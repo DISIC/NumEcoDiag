@@ -225,10 +225,6 @@
 	:global(h2) {
 		margin-top: 2em;
 	}
-	:global(h3) {
-		border-bottom: dotted 1px var(--cl-blue);
-		margin: 2em 0;
-	}
 	:global(.page-anchor) {
 		padding-top: 60px;
 		margin-top: -60px;
