@@ -5,14 +5,6 @@
 	export let counters;
 	export let nbOfCriteria;
 
-	/*
-		Old calculation without unassessed criteria.
-		$: assessed = counters.satisfied + counters.rejected + counters.notApplicable;
-		$: satisfiedRate = ((counters.satisfied / assessed) * 100).toFixed(2); 
-		$: rejectedRate = ((counters.rejected / assessed) * 100).toFixed(2); 
-		$: notApplicableRate = ((counters.notApplicable / assessed) * 100).toFixed(2); 
-	*/
-
 	$: rates = [
 		(((nbOfCriteria - (counters.satisfied + counters.rejected + counters.notApplicable)) / nbOfCriteria) * 100).toFixed(2), // not evaluated rate
 		((counters.satisfied / nbOfCriteria) * 100).toFixed(2), // satisfied rate

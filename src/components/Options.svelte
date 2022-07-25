@@ -22,8 +22,7 @@
             </label>
             <button>Valider</button>
         </form>
-    {/if}
-    -->
+    {/if} -->
     <button on:click="{() => dispatch('exportAudit')}">Exporter la progression (CSV)</button>
     <button on:click="{() => dispatch('resetAudit')}">Réinitialiser l'audit</button>
 </section>
