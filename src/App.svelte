@@ -39,13 +39,13 @@
 										resolve(JSON.parse(data));
 									}
 									catch(e) {
-										reject('Unable to parse the selected RGESN');
+										reject('Lecture du référentiel impossible');
 									}	
 								}	
 							)
 						}
 						else {
-							reject('Unable to open the selected RGESN');
+							reject('Ouverture du référentiel impossible');
 						}
 					}
 				)
@@ -61,7 +61,7 @@
 				}
 			}
 			else {
-				alert("Vous utilisez déjà cette version du référentiel.");
+				alert("Vous utilisez déjà cette version du référentiel");
 			}
 		}
 
@@ -133,7 +133,7 @@
 		function getAudits() {
 			return new Promise((resolve ,reject) => {
 				env.storage.local.get(['audits']).then((data) =>
-					data.audits !== undefined ? resolve(data) : reject('Data not found')                        
+					data.audits !== undefined ? resolve(data) : reject('Absence d\'historique')                        
 				);
 			});
 		}
@@ -171,7 +171,7 @@
 			let exportedBlob = new Blob([exportCSV], {});
 			let aElm = document.createElement('a');
 			aElm.setAttribute('href', window.URL.createObjectURL(exportedBlob));
-			aElm.setAttribute('download', 'rgesn-export.csv');
+			aElm.setAttribute('download', 'checklist-rgesn.csv');
 			aElm.click();
 			aElm.remove();
 		}
