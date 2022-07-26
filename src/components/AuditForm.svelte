@@ -17,20 +17,25 @@
         return false;
     }
 
-	function updateAnswer(criterionId, criterionValue = undefined) {
+	function updateAnswer(prop, criterionId, value = undefined) {
 		dispatch(
 			'updated', { 
+				prop: prop,
 				criterionId: criterionId,
-				criterionState: criterionValue
+				value: value
 			}
 		);
 	}
 
 	function resetAnswer(criterionId, e) {
-		let checkedRadioElm = e.target.parentNode.querySelector(':checked');
-		if(checkedRadioElm !== null) {
-			checkedRadioElm.checked = false; // Front updating
-			updateAnswer(criterionId); // Back updating
+		if(confirm("Supprimer les données associées à ce critère ?")) {
+			// Front updating
+			document.getElementsByName(`analysis-${criterionId}`)[0].value = '';		
+			document.getElementsByName(`status-${criterionId}`)[0].checked = true;
+			document.getElementsByName(`status-${criterionId}`)[0].checked = false;
+			// Back updating
+			updateAnswer('status', criterionId);
+			updateAnswer('analysis', criterionId);
 		}
 		e.preventDefault();
 	}
@@ -40,8 +45,12 @@
         const values = Object.values(audit.byCriteria);
         for(let i = 0, l = keys.length; i < l; i++) {
             let criterionElm = document.getElementById(keys[i]);
-            let criterionInputElm = criterionElm.querySelector(`input[value="${values[i].state}"]`);
-            criterionInputElm.checked = true;
+			if(values[i].status) {
+				criterionElm.querySelector(`input[value="${values[i].status}"]`).checked = true;
+			}
+			if(values[i].analysis) {
+				criterionElm.querySelector('textarea').value = values[i].analysis;
+			}
         }
     });
 
@@ -71,7 +80,7 @@
 				<div>
 					<label>
 						<input
-							on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
 							name="status-{critere.id}" 
 							type="radio" 
 							value="satisfied" />
@@ -79,7 +88,7 @@
 					</label>
 					<label>
 						<input
-							on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
 							name="status-{critere.id}" 
 							type="radio" 
 							value="rejected" />
@@ -87,7 +96,7 @@
 					</label>
 					<label>
 						<input
-							on:change="{(e) => updateAnswer(critere.id, e.target.value)}"
+							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
 							name="status-{critere.id}" 
 							type="radio" 
 							value="not-applicable" />
@@ -98,7 +107,7 @@
 			<div class="criterion__analysis">
 				<h5>Analyse</h5>
 				<label for="analysis-{critere.id}">Votre analyse</label>
-				<textarea name="analysis-{critere.id}"></textarea>
+				<textarea on:input="{(e) => updateAnswer('analysis', critere.id, e.target.value)}" name="analysis-{critere.id}"></textarea>
 			</div>
 			<button on:click="{(e) => resetAnswer(critere.id, e)}">Annuler cette<br/> évaluation</button>
 		</div>

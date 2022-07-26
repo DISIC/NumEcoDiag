@@ -84,14 +84,23 @@
 
 		function updateAudit(e) { 
 			const criterion = {
+				prop: e.detail.prop,
 				id: e.detail.criterionId,
-				state: e.detail.criterionState
-			}        
-			// If already defined, removes 1 to the previous associated state counter 
-			try {
-				let previousCriterionState = audits[index].byCriteria[criterion.id].state;
-				if(previousCriterionState !== undefined) {
-					switch (previousCriterionState) {
+				value: e.detail.value
+			}
+			// If needed, inits values for criterion
+			if(!audits[index].byCriteria[criterion.id]) {
+				audits[index].byCriteria[criterion.id] = {
+					status: undefined,
+					analysis: ''
+				}
+			}
+			// If status has changed, updates counters
+			if(criterion.prop === 'status') {
+				const oldStatus = audits[index].byCriteria[criterion.id].status;
+				const newStatus = criterion.value;
+				if(oldStatus !== undefined) {
+					switch(oldStatus) {
 						case 'satisfied':
 							audits[index].byCounters.satisfied--;
 							break;
@@ -103,15 +112,8 @@
 							break;
 					}
 				}
-			}
-			catch(e) { /* This criterion was not defined before */ }
-			// In all cases, add 1 to the new associated state counter 
-			finally {
-				if(criterion.state !== undefined) {
-					audits[index].byCriteria[criterion.id] = {
-						state: criterion.state
-					};
-					switch (criterion.state) {
+				if(newStatus !== undefined) {
+					switch(newStatus) {
 						case 'satisfied':
 							audits[index].byCounters.satisfied++;
 							break;
@@ -123,10 +125,9 @@
 							break;
 					}
 				}
-				else {
-					delete audits[index].byCriteria[criterion.id];
-				}
 			}
+			// Sets the new value and saves updated audit
+			audits[index].byCriteria[criterion.id][criterion.prop] = criterion.value;
 			env.storage.local.set({'audits': JSON.stringify(audits)});
 		}
 
@@ -139,36 +140,40 @@
 		}
 
 		function exportAudit() {
-			let exportCSV = 'conforme;rejeté;non applicable;id;thématique;critère;\n'; // CSV header part
-			const assessedIds = Object.keys(audits[index].byCriteria);
-			const assessedValues = Object.values(audits[index].byCriteria);
+			let csv = 'Conforme;Rejeté;Non applicable;ID;Thématique;Libellé du critère;Analyse;\n';
 			for(const criterion of referential.criteres) {
-				criterion.value = null;
-				for(let i = 0, l = assessedIds.length; i < l; i++) {
-					if(criterion.id === assessedIds[i]) { // Criterion assessed? Reports state!
-						criterion.value = assessedValues[i].state;
-						break;
+				let assessed = audits[index].byCriteria[criterion.id];
+				if(assessed !== undefined) {
+					switch(assessed.status) {
+						case 'satisfied':
+						csv += 'X;;;';
+							break;
+						case 'rejected':
+							csv += ';X;;';
+							break;
+						case 'not-applicable':
+							csv += ';;X;';
+							break;
+						default:
+							csv += ';;;';
+							break; 
 					}
 				}
-				// CSV criterion state part
-				switch(criterion.value) {
-					case 'satisfied':
-					   exportCSV += 'X;;;';
-						break;
-					case 'rejected':
-						exportCSV += ';X;;';
-						break;
-					case 'not-applicable':
-						exportCSV += ';;X;';
-						break;
-					default:
-						exportCSV += ';;;';
-						break;   
+				else {
+					csv += ';;;';
 				}
-				// CSV criterion info part
-				exportCSV += `${criterion.id};${criterion.thematique};${criterion.critere};\n`
+				csv += `${criterion.id};${criterion.thematique};${criterion.critere};`;
+				if(assessed !== undefined) {
+					if(assessed.analysis !== undefined) {
+						csv += `${assessed.analysis.replace(/(\r\n|\n|\r)/gm, ' / ')};`;
+					}
+					else {
+						csv += ';';
+					}
+				}
+				csv += ';\n';
 			}
-			let exportedBlob = new Blob([exportCSV], {});
+			let exportedBlob = new Blob([csv], {});
 			let aElm = document.createElement('a');
 			aElm.setAttribute('href', window.URL.createObjectURL(exportedBlob));
 			aElm.setAttribute('download', 'checklist-rgesn.csv');
