@@ -17,6 +17,9 @@
 </section>
 
 <style>
+    h2 {
+        margin-top: 4em;
+    }
     div {
         align-items: center;
         display: grid;

@@ -192,7 +192,6 @@
 
 <main>
 	<Navigation />
-	<h1>Référentiel Général d'Écoconception de Services Numériques</h1>
 	{#if referential}
 		{#key render }
 			<Results 
@@ -224,17 +223,14 @@
 		font-size: 16px;
 		width: 500px;
 	}
-	:global(h1) {
-		margin-top: 3em;
-	}
 	:global(h2) {
-		margin-top: 2em;
+		margin-top: 2.5em;
 	}
 	:global(.page-anchor) {
-		padding-top: 60px;
-		margin-top: -60px;
+		padding-top: 2.5em;
+		margin-top: -2.5em;
 	}
 	:global(a) {
-		color: var(--cl-blue);
+		color: inherit;
 	}
 </style>

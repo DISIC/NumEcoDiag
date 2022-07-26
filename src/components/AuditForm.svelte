@@ -56,9 +56,9 @@
 
 </script>
 
-<form id="referentiel" class="page-anchor">
+<form id="audit" class="page-anchor">
     <h2>
-        Référentiel version {referential.version}<br/>
+        Audit référentiel version {referential.version}<br/>
         {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
     </h2>
     {#each referential.criteres as critere}
@@ -134,6 +134,8 @@
 		color: #fff;
 		margin: 2em 0 .5em 0;
 		padding: 1em;
+		position: sticky;
+		top: 3.75em;
 	}
 	h4 {
 		margin-top: 0;
@@ -143,12 +145,12 @@
 		margin-bottom: .5em;
 	}
 	label {
-		font-size: 0.9em;
 		color: var(--cl-darkgray);
+		font-size: 0.9em;
 	}
 	.criterion__analysis label {
-		position: absolute;
 		left: -9999px;
+		position: absolute;
 	}
 	label:first-of-type input:checked {
 		accent-color: var(--cl-green);
@@ -176,10 +178,6 @@
 	}
 	button {
 		margin-top: 1em;
-		opacity: .75;
-	}
-	button:hover {
-		opacity: 1;
 	}
 	svg {
 		fill: var(--cl-blue);
