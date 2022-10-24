@@ -211,6 +211,17 @@
 </main>
 
 <style>
+	@font-face {
+		font-display: swap;
+		font-family: "Marianne";
+		src: url("../static/marianne-regular.woff2") format("woff2");
+	}
+	@font-face {
+		font-display: swap;
+		font-family: "Marianne";
+		src: url("../static/marianne-bold.woff2") format("woff2");
+		font-weight: bold;
+	}
 	:global(main) {
 		--cl-black: #000;
 		--cl-blue: #000091;
@@ -219,7 +230,7 @@
 		--cl-lightgray: #ddd;
 		--cl-red: #d11;
 		--cl-white: #fff;
-		font-family: sans-serif;
+		font-family: "Marianne", sans-serif;
 		font-size: 16px;
 		width: 600px
 	}
@@ -232,5 +243,8 @@
 	}
 	:global(a) {
 		color: inherit;
+	}
+	:global(button, textarea) {
+		font-family: "Marianne", sans-serif;
 	}
 </style>

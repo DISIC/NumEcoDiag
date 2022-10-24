@@ -58,7 +58,7 @@
 
 <form id="evaluation" class="page-anchor">
     <h2>
-        Auto-évaluation <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> v. {referential.version}<br/>
+        Auto-évaluation <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> version {referential.version}<br/>
         {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
     </h2>
     {#each referential.criteres as critere}
@@ -146,7 +146,7 @@
 	}
 	label {
 		color: var(--cl-darkgray);
-		font-size: 0.9em;
+		font-size: .9em;
 	}
 	.criterion__analysis label {
 		left: -9999px;
@@ -162,8 +162,7 @@
 		accent-color: var(--cl-blue);
 	}
 	input {
-		margin: 0.5em auto auto auto;
-        vertical-align: bottom;
+		margin: .5em .25em auto auto;
 	}
 	input:checked + span {
 		color: var(--cl-black);
@@ -182,7 +181,7 @@
 	svg {
 		fill: var(--cl-blue);
 		height: 12px;
-		margin-left: 0.25em;
+		margin-left: .25em;
 		vertical-align: middle;
 		width: 12px;
 	}

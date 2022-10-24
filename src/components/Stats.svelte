@@ -61,7 +61,7 @@
     }
     th, td {
         border-bottom: solid 1px;
-        padding: 0.25em;
+        padding: .25em;
         text-align: left;
     }
     th {
