@@ -197,16 +197,16 @@
 			<Results 
 				bind:counters="{audits[index].byCounters}"
 				bind:nbOfCriteria="{referential.criteres.length}" />
+			<Options 
+				on:changeVersion="{(e) => changeRGESN(e.detail.versionToApply)}"
+				on:resetAudit="{(e) => resetAudit(undefined)}"
+				on:exportAudit="{exportAudit}" />
 			<AuditForm 
 				audit="{audits[index]}" 
 				referential="{referential}" 
 				on:updated="{updateAudit}" />
 		{/key}
 	{/if}
-	<Options 
-		on:changeVersion="{(e) => changeRGESN(e.detail.versionToApply)}"
-		on:resetAudit="{(e) => resetAudit(undefined)}"
-		on:exportAudit="{exportAudit}" />
 	<About />
 </main>
 
@@ -221,7 +221,7 @@
 		--cl-white: #fff;
 		font-family: sans-serif;
 		font-size: 16px;
-		width: 60ch
+		width: 50ch
 	}
 	:global(h2) {
 		margin-top: 2.5em;

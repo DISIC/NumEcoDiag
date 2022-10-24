@@ -17,6 +17,9 @@
 </section>
 
 <style>
+    section {
+        margin-bottom: 2em;
+    }
     h2 {
         margin-top: 4em;
     }

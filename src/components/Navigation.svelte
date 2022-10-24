@@ -7,7 +7,6 @@
         <ul>
             <li><a href="#resultats">Résultats</a></li>
             <li><a href="#evaluation">Évaluation</a></li>
-            <li><a href="#options">Options</a></li>
             <li><a href="#a-propos">À propos</a></li>
         </ul>
   
