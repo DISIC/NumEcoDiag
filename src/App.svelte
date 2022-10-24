@@ -176,7 +176,7 @@
 			let exportedBlob = new Blob([csv], {});
 			let aElm = document.createElement('a');
 			aElm.setAttribute('href', window.URL.createObjectURL(exportedBlob));
-			aElm.setAttribute('download', 'checklist-rgesn.csv');
+			aElm.setAttribute('download', 'NumÉcoDiag.csv');
 			aElm.click();
 			aElm.remove();
 		}
@@ -221,7 +221,7 @@
 		--cl-white: #fff;
 		font-family: sans-serif;
 		font-size: 16px;
-		width: 50ch
+		width: 600px
 	}
 	:global(h2) {
 		margin-top: 2.5em;

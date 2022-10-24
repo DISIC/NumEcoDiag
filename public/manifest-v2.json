@@ -4,12 +4,12 @@
 	"description": "Cette WebExtension développée et mise à disposition gratuitement par la MiNumEco facilite l'évaluation de l’écoconception d’un service numérique, conformément au Référentiel Général d'Écoconception de Services Numériques (RGESN)",
 	"version": "1.0.0",
 	"icons": {
-		"16": "./static/ecodesign-addon-logo-16x16.png",
-		"48": "./static/ecodesign-addon-logo-48x48.png",
-		"128": "./static/ecodesign-addon-logo-128x128.png"
+		"16": "./static/numecodiag-logo-16x16.png",
+		"48": "./static/numecodiag-logo-48x48.png",
+		"128": "./static/numecodiag-logo-128x128.png"
 	},
 	"browser_action": {
-		"default_icon": "./static/ecodesign-addon-logo-48x48.png",
+		"default_icon": "./static/numecodiag-logo-48x48.png",
 		"default_popup": "./index.html",
 		"default_title": "NumÉcoDiag"
 	},	
