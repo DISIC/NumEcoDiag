@@ -31,7 +31,7 @@
     </tr>
     <tr>
         <th>Conformité sur {assessed} critère(s)</th>
-        <td>{conformity !== 'NaN' ? conformity + ' %' : 'Indisp.'}</td>
+        <td>{conformity !== 'NaN' ? conformity + ' %' : 'Indisponible'}</td>
     </tr>
 </table>
   

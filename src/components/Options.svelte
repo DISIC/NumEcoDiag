@@ -21,7 +21,7 @@
         <button>Valider</button>
     </form>
 {/if} -->
-<button on:click="{() => dispatch('exportAudit')}">Exporter la progression (CSV)</button>
+<button on:click="{() => dispatch('exportAudit')}">Exporter les résultats (CSV)</button>
 <button on:click="{() => dispatch('resetAudit')}">Réinitialiser l'audit</button>
 
 <style>
