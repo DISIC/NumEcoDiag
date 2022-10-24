@@ -58,7 +58,7 @@
 
 <form id="audit" class="page-anchor">
     <h2>
-        Audit référentiel version {referential.version}<br/>
+        Auto-évaluation référentiel v. {referential.version}<br/>
         {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
     </h2>
     {#each referential.criteres as critere}
