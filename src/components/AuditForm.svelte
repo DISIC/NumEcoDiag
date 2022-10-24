@@ -58,7 +58,7 @@
 
 <form id="evaluation" class="page-anchor">
     <h2>
-        Auto-évaluation <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/">RGESN</a> v. {referential.version}<br/>
+        Auto-évaluation <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> v. {referential.version}<br/>
         {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
     </h2>
     {#each referential.criteres as critere}
