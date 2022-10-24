@@ -92,7 +92,7 @@
 							name="status-{critere.id}" 
 							type="radio" 
 							value="rejected" />
-						<span>Rejeté</span>
+						<span>Non conforme</span>
 					</label>
 					<label>
 						<input

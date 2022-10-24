@@ -140,7 +140,7 @@
 		}
 
 		function exportAudit() {
-			let csv = 'Conforme;Rejeté;Non applicable;ID;Thématique;Libellé du critère;Analyse;\n';
+			let csv = 'Conforme;Non conforme;Non applicable;ID;Thématique;Libellé du critère;Analyse;\n';
 			for(const criterion of referential.criteres) {
 				let assessed = audits[index].byCriteria[criterion.id];
 				if(assessed !== undefined) {

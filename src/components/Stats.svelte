@@ -22,7 +22,7 @@
         <td>{counters.satisfied}</td>
     </tr>
     <tr>
-        <th class="donut-ref rejected">Rejetés</th>
+        <th class="donut-ref rejected">Non conformes</th>
         <td>{counters.rejected}</td>
     </tr>
     <tr>
