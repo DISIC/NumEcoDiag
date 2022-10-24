@@ -105,8 +105,8 @@
 				</div>
 			</div>
 			<div class="criterion__analysis">
-				<h5>Analyse</h5>
-				<label for="analysis-{critere.id}">Votre analyse</label>
+				<h5>Commentaire</h5>
+				<label for="analysis-{critere.id}">Votre commentaire</label>
 				<textarea on:input="{(e) => updateAnswer('analysis', critere.id, e.target.value)}" name="analysis-{critere.id}"></textarea>
 			</div>
 			<button on:click="{(e) => resetAnswer(critere.id, e)}">Annuler cette<br/> évaluation</button>
