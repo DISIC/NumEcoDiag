@@ -1,6 +1,6 @@
 {
 	"manifest_version" : 3,
-	"name": "Checklist RGESN",
+	"name": "NumÉcoDiag",
 	"description": "Aide à l'auto-évaluation de la conformité d’un service numérique selon le Référentiel Général d'Écoconception de Services Numériques (RGESN)",
 	"version": "1.0.0",
 	"icons": {
@@ -11,7 +11,7 @@
 	"action": {
 		"default_icon": "./static/ecodesign-addon-logo-48x48.png",
 		"default_popup": "./index.html",
-		"default_title": "Checklist RGESN"
+		"default_title": "NumÉcoDiag"
 	},	
 	"permissions": [
 		"storage"
