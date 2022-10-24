@@ -6,7 +6,7 @@
     
         <ul>
             <li><a href="#resultats">Résultats</a></li>
-            <li><a href="#audit">Audit</a></li>
+            <li><a href="#evaluation">Évaluation</a></li>
             <li><a href="#options">Options</a></li>
             <li><a href="#a-propos">À propos</a></li>
         </ul>
@@ -22,7 +22,7 @@
         display: grid;
         grid-template-columns: 1fr 2fr;
         left: 0;
-        padding: .25em .75em;
+        padding: .75em;
         position: fixed;
         right: 0;
         top: 0;

@@ -221,7 +221,7 @@
 		--cl-white: #fff;
 		font-family: sans-serif;
 		font-size: 16px;
-		width: 500px;
+		width: 60ch
 	}
 	:global(h2) {
 		margin-top: 2.5em;
