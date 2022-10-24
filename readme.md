@@ -1,6 +1,6 @@
 # NumÉcoDiag 
 
-Cette WebExtension proposée par la [MiNumEco](https://ecoresponsable.numerique.gouv.fr/) facilite l'auto-évaluation de la conformité d’un service numérique selon le [Référentiel Général d'Écoconception de Services Numériques](https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/) (RGESN).
+Cette WebExtension développée et mise à disposition gratuitement par la [MiNumEco](https://ecoresponsable.numerique.gouv.fr/) facilite l’auto-évaluation de l’écoconception d’un service numérique, conformément au [Référentiel Général d'Écoconception de Services Numériques](https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/) (RGESN).
 
 Réalisation : [Pôle écoconception Temesis](https://www.temesis.com/).
 
