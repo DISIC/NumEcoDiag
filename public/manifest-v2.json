@@ -1,7 +1,7 @@
 {
 	"manifest_version" : 2,
 	"name": "NumÉcoDiag",
-	"description": "Aide à l'auto-évaluation de la conformité d’un service numérique selon le Référentiel Général d'Écoconception de Services Numériques (RGESN)",
+	"description": "Cette WebExtension développée et mise à disposition gratuitement par la MiNumEco facilite l'évaluation de l’écoconception d’un service numérique, conformément au Référentiel Général d'Écoconception de Services Numériques (RGESN)",
 	"version": "1.0.0",
 	"icons": {
 		"16": "./static/ecodesign-addon-logo-16x16.png",
