@@ -27,19 +27,6 @@
 		);
 	}
 
-	function resetAnswer(criterionId, e) {
-		if(confirm("Supprimer les données associées à ce critère ?")) {
-			// Front updating
-			document.getElementsByName(`analysis-${criterionId}`)[0].value = '';		
-			document.getElementsByName(`status-${criterionId}`)[0].checked = true;
-			document.getElementsByName(`status-${criterionId}`)[0].checked = false;
-			// Back updating
-			updateAnswer('status', criterionId);
-			updateAnswer('analysis', criterionId);
-		}
-		e.preventDefault();
-	}
-
     onMount(() => { // Check the corresponding radios for all the criteria that have already been evaluated
         const keys = Object.keys(audit.byCriteria);
         const values = Object.values(audit.byCriteria);
@@ -109,7 +96,6 @@
 				<label for="analysis-{critere.id}">Votre commentaire</label>
 				<textarea on:input="{(e) => updateAnswer('analysis', critere.id, e.target.value)}" name="analysis-{critere.id}"></textarea>
 			</div>
-			<button on:click="{(e) => resetAnswer(critere.id, e)}">Annuler cette<br/> évaluation</button>
 		</div>
 	{/each}
 </form>
@@ -174,9 +160,6 @@
 		padding: .5em;
 		resize: vertical;
 		width: 100%;
-	}
-	button {
-		margin-top: 1em;
 	}
 	svg {
 		fill: var(--cl-blue);
