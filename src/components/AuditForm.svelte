@@ -70,6 +70,15 @@
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
 							name="status-{critere.id}" 
 							type="radio" 
+							value="undefined"
+							checked />
+						<span>À évaluer</span>
+					</label>
+					<label>
+						<input
+							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
+							name="status-{critere.id}" 
+							type="radio" 
 							value="satisfied" />
 						<span>Conforme</span>
 					</label>
@@ -112,7 +121,7 @@
 		align-items: center;
 		display: grid;
 		gap: 1.5em;
-		grid-template-columns: repeat(3, auto);
+		grid-template-columns: repeat(4, auto);
 		justify-content: start;
 	}
 	h3 {
@@ -138,10 +147,10 @@
 		left: -9999px;
 		position: absolute;
 	}
-	label:first-of-type input:checked {
+	label:nth-of-type(2) input:checked {
 		accent-color: var(--cl-green);
 	}
-	label:nth-of-type(2) input:checked {
+	label:nth-of-type(3) input:checked {
 		accent-color: var(--cl-red);
 	}
 	label:last-of-type input:checked {
