@@ -91,7 +91,7 @@
 			// If needed, inits values for criterion
 			if(!audits[index].byCriteria[criterion.id]) {
 				audits[index].byCriteria[criterion.id] = {
-					status: undefined,
+					status: "undefined",
 					analysis: ''
 				}
 			}
@@ -99,7 +99,7 @@
 			if(criterion.prop === 'status') {
 				const oldStatus = audits[index].byCriteria[criterion.id].status;
 				const newStatus = criterion.value;
-				if(oldStatus !== undefined) {
+				if(oldStatus !== "undefined") {
 					switch(oldStatus) {
 						case 'satisfied':
 							audits[index].byCounters.satisfied--;
@@ -112,7 +112,7 @@
 							break;
 					}
 				}
-				if(newStatus !== undefined) {
+				if(newStatus !== "undefined") {
 					switch(newStatus) {
 						case 'satisfied':
 							audits[index].byCounters.satisfied++;
