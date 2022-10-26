@@ -63,7 +63,6 @@
 				</a>		
 			</h4>
 			<div class="criterion__status">
-				<h5>État</h5>
 				<div>
 					<label>
 						<input
