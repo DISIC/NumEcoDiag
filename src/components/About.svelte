@@ -6,7 +6,7 @@
     </div>
     <p>Le RGESN est sous <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence" target="_blank">licence ouverte Etalab v2</a>.<br/> Cette extension est sous <a href="https://joinup.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20FR.txt" target="_blank">licence European Union Public License 1</a>.</p>
     <p>Réalisation : <a href="https://www.temesis.com/" target="_blank">Temesis</a>.</p>
-    <p>Pour contribuer à l'amélioration de cet outil (report de bugs, pistes d'amélioration, etc.), visitez <a href="https://github.com/DISIC/ecodesign-addon" target="_blank">le dépôt GitHub officiel du projet</a>.</p>
+    <p>Pour contribuer à l'amélioration de cet outil (report de bugs, pistes d'amélioration, etc.), visitez <a href="https://github.com/DISIC/NumEcoDiag" target="_blank">le dépôt GitHub officiel du projet</a>.</p>
 </section>
 
 <style>
