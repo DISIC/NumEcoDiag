@@ -22,7 +22,7 @@
     </form>
 {/if} -->
 <button on:click="{() => dispatch('exportAudit')}">Exporter les résultats (CSV)</button>
-<button on:click="{() => dispatch('buildBadge')}">Générer un badge HTML</button>
+<button on:click="{() => dispatch('buildBadge')}">Télécharger le badge HTML</button>
 <button on:click="{() => dispatch('resetAudit')}">Réinitialiser l'audit</button>
 <style>
     button {

@@ -5,7 +5,7 @@
     </div>
     <ul>
         <li><a href="#resultats">Résultats</a></li>
-        <li><a href="#evaluation">Évaluation</a></li>
+        <li><a href="#diagnostic">Diagnostic</a></li>
         <li><a href="#a-propos">À propos</a></li>
     </ul>
 </nav>
