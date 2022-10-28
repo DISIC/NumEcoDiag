@@ -140,36 +140,39 @@
 		}
 
 		function exportAudit() {
-			let csv = 'Conforme;Non conforme;Non applicable;ID;Thématique;Libellé du critère;Commentaire;\n';
+			let csv = 'ID;Thématique;Libellé du critère;Évaluation;Commentaire;\n';
 			for(const criterion of referential.criteres) {
-				let assessed = audits[index].byCriteria[criterion.id];
+				csv += `${criterion.id};${criterion.thematique};${criterion.critere};`;
+				const assessed = audits[index].byCriteria[criterion.id];
 				if(assessed !== undefined) {
 					switch(assessed.status) {
 						case 'satisfied':
-						csv += 'X;;;';
-							break;
+							csv += 'conforme;';
+								break;
 						case 'rejected':
-							csv += ';X;;';
+							csv += 'non conforme;';
 							break;
 						case 'not-applicable':
-							csv += ';;X;';
+							csv += 'non applicable;';
 							break;
 						default:
-							csv += ';;;';
-							break; 
+							csv += 'à évaluer;';
+							break;
 					}
 				}
 				else {
-					csv += ';;;';
+					csv += 'à évaluer;';
 				}
-				csv += `${criterion.id};${criterion.thematique};${criterion.critere};`;
 				if(assessed !== undefined) {
 					if(assessed.analysis !== undefined) {
-						csv += `${assessed.analysis.replace(/(\r\n|\n|\r)/gm, ' / ')};`;
+						csv += `"${assessed.analysis}"`;
 					}
 					else {
 						csv += ';';
 					}
+				}
+				else {
+					csv += ';';
 				}
 				csv += ';\n';
 			}
