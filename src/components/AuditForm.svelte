@@ -145,7 +145,8 @@
 		margin: 2em 0 .5em 0;
 		padding: 1em;
 		position: sticky;
-		top: 75px
+		scroll-margin-top: 4em;
+		top: 75px;
 	}
 	h4 {
 		margin-top: 0;
