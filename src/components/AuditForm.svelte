@@ -5,6 +5,16 @@
 
 	export let referential;
     export let audit;
+	const thematiques = [
+        'Stratégie', 
+        'Spécifications', 
+        'Architecture', 
+        'UX/UI', 
+        'Contenus', 
+        'Frontend', 
+        'Backend', 
+        'Hébergement'
+    ];
 
     let dispatch = createEventDispatcher();
     let lastTheme = '';
@@ -48,9 +58,15 @@
         Auto-diagnostic <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> version {referential.version}<br/>
         {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
     </h2>
+	<h3>Accès rapide</h3>
+	<ol>
+		{#each thematiques as thematique}
+			<li><a href="#{thematique}">{thematique}</a></li>
+		{/each}
+	</ol>
     {#each referential.criteres as critere}
         {#if isAnotherTheme(critere.thematique)}
-            <h3>{critere.thematique}</h3>
+            <h3 id="{critere.thematique}">{critere.thematique}</h3>
         {/if}
 		<div class="criterion" id="{critere.id}">
 			<h4 class="criterion__title">
