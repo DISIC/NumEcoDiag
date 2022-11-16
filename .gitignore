@@ -1,0 +1,5 @@
+/_
+/node_modules/
+/public/assets/
+/public/manifest.json
+.DS_Store
