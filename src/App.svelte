@@ -8,8 +8,8 @@
 		import Options from './components/Options.svelte';
 		import About from './components/About.svelte';
 		
-		// const versions = ['beta']; // Available versions (stored in /public/rgesn)
-		let defaultVersion = 'beta';
+		// const versions = ['v1']; // Available versions (stored in /public/rgesn)
+		let defaultVersion = 'v1';
 		let referential; // RGESN content
 		let index = 0; // Current audit index identifier
 		let audits = [ // Audits progression
