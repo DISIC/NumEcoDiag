@@ -8,7 +8,7 @@
         Le RGESN est sous <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence" target="_blank">licence ouverte Etalab v2</a>.<br> 
         Cette extension est sous <a href="https://joinup.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20FR.txt" target="_blank">licence European Union Public License 1</a>.<br>
         Réalisation : MiNumEco, <a href="https://www.temesis.com/" target="_blank">Temesis</a>.</p>
-    <p>Pour contribuer à l'amélioration de cet outil (report de bugs, pistes d'amélioration, etc.), visitez <a href="https://github.com/DISIC/NumEcoDiag" target="_blank">le dépôt GitHub officiel du projet</a>. Vous pouvez aussi consulter <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/numecodiag" target="_blank">la page officielle NumÉcoDiag</a> pour en apprendre plus à son sujet.</p>
+    <p>Pour contribuer à l'amélioration de cet outil (report de bugs, pistes d'amélioration, etc.), visitez <a href="https://github.com/DISIC/NumEcoDiag" target="_blank">le dépôt GitHub officiel du projet</a>. Vous pouvez aussi consulter <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/numecodiag/" target="_blank">la page officielle NumÉcoDiag</a> pour en apprendre plus à son sujet.</p>
 </section>
 
 <style>
