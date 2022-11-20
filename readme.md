@@ -23,7 +23,7 @@ Réalisation : [Pôle écoconception Temesis](https://www.temesis.com/).
         2. Charger l'extension depuis l'adresse `chrome://extensions/` en sélectionnant le dossier `public`.
 5. L'accès au popup se fait depuis la partie supérieure droite du navigateur.
 
-## Licenses
+## Licences
 
 * Le RGESN est sous [licence ouverte Etalab v2](https://www.etalab.gouv.fr/licence-ouverte-open-licence).
 * L'extension est sous [licence European Union Public License 1](https://joinup.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20FR.txt)</a>.
