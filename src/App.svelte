@@ -209,8 +209,13 @@
 		getAudits()
 			.then(data => audits = JSON.parse(data.audits))
 			.catch((warning) => console.warn(warning))
-				.finally(() => getRGESN(audits[index].selectedVersion));
-   
+				.finally(() => getRGESN(audits[index].selectedVersion).then(() => {
+					window.onscroll = () => env.storage.local.set({'scrollPosY': window.scrollY});
+					env.storage.local.get('scrollPosY').then(data => window.scroll(0, (data.scrollPosY || 0)));
+				}		
+			)
+		);	
+
 </script>
 
 <main>
@@ -256,7 +261,7 @@
 		--cl-white: #fff;
 		font-family: "Marianne", sans-serif;
 		font-size: 16px;
-		min-width: 600px
+		min-width: 600px;
 	}
 	:global(h2) {
 		margin-top: 2.5em;
