@@ -4,10 +4,11 @@ Cette WebExtension développée et mise à disposition gratuitement par la [MiNu
 
 Réalisation : [Pôle écoconception Temesis](https://www.temesis.com/).
 
-## Installation automatique :
+## Installation
 
-* Firefox : (lien à venir)
-* Chrome : (lien à venir)
+* [Firefox](https://addons.mozilla.org/fr/firefox/addon/num%C3%A9codiag/)
+* [Chrome](https://chrome.google.com/webstore/detail/num%C3%A9codiag/fhdeahmddgflanbgilcglipaeofmcabc)
+* Edge (à venir, utiliser en attendant l'extension [Chrome](https://chrome.google.com/webstore/detail/num%C3%A9codiag/fhdeahmddgflanbgilcglipaeofmcabc))
 
 ## Installation manuelle
 
