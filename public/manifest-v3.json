@@ -1,7 +1,7 @@
 {
 	"manifest_version" : 3,
 	"name": "NumÉcoDiag",
-	"description": "Cette WebExtension développée et mise à disposition gratuitement par la MiNumEco facilite l'auto-diagnostic de l’écoconception d’un service numérique, conformément au Référentiel Général d'Écoconception de Services Numériques (RGESN)",
+	"description": "Cette extension web facilite l'auto-diagnostic de l’écoconception d’un service numérique.",
 	"version": "1.0.1",
 	"icons": {
 		"16": "./static/numecodiag-logo-16x16.png",
