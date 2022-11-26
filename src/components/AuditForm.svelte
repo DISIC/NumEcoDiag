@@ -41,7 +41,7 @@
         const keys = Object.keys(audit.byCriteria);
         const values = Object.values(audit.byCriteria);
         for(let i = 0, l = keys.length; i < l; i++) {
-            let criterionElm = document.getElementById(keys[i]);
+            let criterionElm = document.getElementById(keys[i].replace('.', '-'));
 			if(values[i].status) {
 				criterionElm.querySelector(`input[value="${values[i].status}"]`).checked = true;
 			}
