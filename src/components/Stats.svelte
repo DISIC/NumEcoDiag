@@ -4,7 +4,7 @@
     export let nbOfCriteria;
 
     $: assessed = counters.satisfied + counters.rejected + counters.notApplicable;
-    $: conformity = (counters.satisfied / ((assessed) - (counters.notApplicable)) * 100).toFixed(2);
+    $: conformity = ((counters.satisfied  + counters.notApplicable) / 79 * 100).toFixed(0);
 
 </script>
 
@@ -30,7 +30,7 @@
         <td>{counters.notApplicable}</td>
     </tr>
     <tr>
-        <th>Conformité sur {assessed} critère(s)</th>
+        <th>Conformité ({assessed} critères évalués)</th>
         <td>{conformity !== 'NaN' ? conformity + ' %' : 'Indisponible'}</td>
     </tr>
 </table>
