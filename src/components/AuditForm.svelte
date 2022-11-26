@@ -55,15 +55,29 @@
 
 <form id="diagnostic" class="page-anchor">
     <h2>
-        Auto-diagnostic <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> version {referential.version}<br/>
-        {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
+        Auto-diagnostic <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> version {referential.version}
     </h2>
-	<h3>Accès rapide</h3>
+	<p>
+		<b>{audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s)</b> sur {referential.criteres.length}
+	</p>
+
+	<h3>Thématiques</h3>
 	<ol>
 		{#each thematiques as thematique}
 			<li><a href="#{thematique}">{thematique}</a></li>
 		{/each}
 	</ol>
+
+	<h3>À propos de l'évaluation</h3>
+	<p>
+		Cette évaluation déclarative se base sur le RGESN, <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">Référentiel Général d’Écoconception des Services Numériques</a>, publié par la MiNumEco et copiloté par la DINUM, le ministère de la Transition écologique, l'ADEME et l'INR pour la mise en conformité des services numériques de l’administration française et partagé avec l’ensemble des acteurs du numérique.
+	</p>
+	<p>
+		Cette auto-évaluation vous permet de situer le niveau d’écoconception de votre service numérique et de l’afficher sur vos outils de communication (<a href="#resultats">en téléchargeant un badge HTML</a>).
+		Vous n’êtes pas obligés de répondre à toutes les questions pour obtenir un premier résultat. Il est important de réaliser cette évaluation avec l'ensemble de l'équipe et des parties prenantes de votre projet.
+		Pour chaque critère, 4 options sont disponibles : À évaluer, Conforme, Non conforme et Non applicable dans votre contexte projet. Il est important de justifier en commentaire lorsqu'un critère est conforme ou non applicable.
+	</p>
+
     {#each referential.criteres as critere}
         {#if isAnotherTheme(critere.thematique)}
             <h3 id="{critere.thematique}">{critere.thematique}</h3>

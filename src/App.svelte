@@ -7,6 +7,7 @@
 		import AuditForm from './components/AuditForm.svelte';
 		import Options from './components/Options.svelte';
 		import About from './components/About.svelte';
+  		import Header from './components/Header.svelte';
 		
 		// const versions = ['v1']; // Available versions (stored in /public/rgesn)
 		let defaultVersion = 'v1';
@@ -220,6 +221,7 @@
 
 <main>
 	<Navigation />
+	<Header />
 	{#if referential}
 		{#key render }
 			<Results 
