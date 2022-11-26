@@ -79,10 +79,12 @@
 	</p>
 
     {#each referential.criteres as critere}
+		{@const critereId = critere.id.replace('.', '-')}
+
         {#if isAnotherTheme(critere.thematique)}
             <h3 id="{critere.thematique}">{critere.thematique}</h3>
         {/if}
-		<div class="criterion" id="{critere.id}">
+		<div class="criterion" id="{critereId}">
 			<h4 class="criterion__title">
 				{critere.id} : {critere.critere}
 				<a 
@@ -94,35 +96,39 @@
 			</h4>
 			<div class="criterion__status">
 				<div>
-					<label>
+					<label for="status-{critereId}-undefined">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-undefined"
+							name="status-{critereId}" 
 							type="radio" 
 							value="undefined"
 							checked />
 						<span>À évaluer</span>
 					</label>
-					<label>
+					<label for="status-{critereId}-satisfied">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-satisfied"
+							name="status-{critereId}" 
 							type="radio" 
 							value="satisfied" />
 						<span>Conforme</span>
 					</label>
-					<label>
+					<label for="status-{critereId}-rejected">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-rejected"
+							name="status-{critereId}" 
 							type="radio" 
 							value="rejected" />
 						<span>Non conforme</span>
 					</label>
-					<label>
+					<label for="status-{critereId}-not-applicable">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-not-applicable"
+							name="status-{critereId}" 
 							type="radio" 
 							value="not-applicable" />
 						<span>Non applicable</span>
