@@ -16,11 +16,9 @@ Réalisation : [Pôle écoconception Temesis](https://www.temesis.com/).
 2. Dans un terminal, depuis le dossier téléchargé, lancer la commande `npm install` pour télécharger / installer les dépendances de développement du projet. 
 3. Dans le même terminal, lancer ensuite la commande `npm run build` pour construire l'application depuis les sources fournies.
 4. Procédure d'installation spécifique 
-    - Sur Firefox :
-        1. Renommer le fichier `/public/manifest-v2.json` en `manifest.json`.
-        2. Charger l'extension depuis l'adresse `about:debbuging` en sélectionnant le fichier `public/manifest.json`
+    - Sur Firefox : charger l'extension depuis l'adresse `about:debbuging` en sélectionnant le fichier `public/manifest.json`.
     - Sur Chrome :
-        1. Renommer le fichier `/public/manifest-v3.json` en `manifest.json`.
+        1. Renommer le fichier `/public/manifest-chrome.json` en `manifest.json`.
         2. Charger l'extension depuis l'adresse `chrome://extensions/` en sélectionnant le dossier `public`.
 5. L'accès au popup se fait depuis la partie supérieure droite du navigateur.
 

@@ -41,7 +41,7 @@
         const keys = Object.keys(audit.byCriteria);
         const values = Object.values(audit.byCriteria);
         for(let i = 0, l = keys.length; i < l; i++) {
-            let criterionElm = document.getElementById(keys[i]);
+            let criterionElm = document.getElementById(keys[i].replace('.', '-'));
 			if(values[i].status) {
 				criterionElm.querySelector(`input[value="${values[i].status}"]`).checked = true;
 			}
@@ -55,20 +55,36 @@
 
 <form id="diagnostic" class="page-anchor">
     <h2>
-        Auto-diagnostic <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> version {referential.version}<br/>
-        {audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s) sur {referential.criteres.length}
+        Auto-diagnostic <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">RGESN</a> version {referential.version}
     </h2>
-	<h3>Accès rapide</h3>
+	<p>
+		<b>{audit.byCounters.satisfied + audit.byCounters.rejected + audit.byCounters.notApplicable} critère(s) évalué(s)</b> sur {referential.criteres.length}
+	</p>
+
+	<h3>Thématiques</h3>
 	<ol>
 		{#each thematiques as thematique}
 			<li><a href="#{thematique}">{thematique}</a></li>
 		{/each}
 	</ol>
+
+	<h3>À propos de l'évaluation</h3>
+	<p>
+		Cette évaluation déclarative se base sur le RGESN, <a href="https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/" target="_blank">Référentiel Général d’Écoconception des Services Numériques</a>, publié par la MiNumEco et copiloté par la DINUM, le ministère de la Transition écologique, l'ADEME et l'INR pour la mise en conformité des services numériques de l’administration française et partagé avec l’ensemble des acteurs du numérique.
+	</p>
+	<p>
+		Cette auto-évaluation vous permet de situer le niveau d’écoconception de votre service numérique et de l’afficher sur vos outils de communication (<a href="#resultats">en téléchargeant un badge HTML</a>).
+		Vous n’êtes pas obligés de répondre à toutes les questions pour obtenir un premier résultat. Il est important de réaliser cette évaluation avec l'ensemble de l'équipe et des parties prenantes de votre projet.
+		Pour chaque critère, 4 options sont disponibles : À évaluer, Conforme, Non conforme et Non applicable dans votre contexte projet. Il est important de justifier en commentaire lorsqu'un critère est conforme ou non applicable.
+	</p>
+
     {#each referential.criteres as critere}
+		{@const critereId = critere.id.replace('.', '-')}
+
         {#if isAnotherTheme(critere.thematique)}
             <h3 id="{critere.thematique}">{critere.thematique}</h3>
         {/if}
-		<div class="criterion" id="{critere.id}">
+		<div class="criterion" id="{critereId}">
 			<h4 class="criterion__title">
 				{critere.id} : {critere.critere}
 				<a 
@@ -80,35 +96,39 @@
 			</h4>
 			<div class="criterion__status">
 				<div>
-					<label>
+					<label for="status-{critereId}-undefined">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-undefined"
+							name="status-{critereId}" 
 							type="radio" 
 							value="undefined"
 							checked />
 						<span>À évaluer</span>
 					</label>
-					<label>
+					<label for="status-{critereId}-satisfied">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-satisfied"
+							name="status-{critereId}" 
 							type="radio" 
 							value="satisfied" />
 						<span>Conforme</span>
 					</label>
-					<label>
+					<label for="status-{critereId}-rejected">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-rejected"
+							name="status-{critereId}" 
 							type="radio" 
 							value="rejected" />
 						<span>Non conforme</span>
 					</label>
-					<label>
+					<label for="status-{critereId}-not-applicable">
 						<input
 							on:change="{(e) => updateAnswer('status', critere.id, e.target.value)}"
-							name="status-{critere.id}" 
+							id="status-{critereId}-not-applicable"
+							name="status-{critereId}" 
 							type="radio" 
 							value="not-applicable" />
 						<span>Non applicable</span>
