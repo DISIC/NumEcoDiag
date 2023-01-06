@@ -25,7 +25,37 @@
 			}
 		];
 		let render = false; // Makes Results & AuditForm components reactives
-		const env = window.browser === undefined ? window.chrome : window.browser; // Makes extension cross platform
+		const webAppMode = false; // Makes NumÉcoDiag able to be served as webApp and makes debugging easier (entry point: /public/index.html) 
+		const env = window.browser === undefined ? window.chrome : window.browser; // Makes NumÉcoDiag cross browser as webExtension
+
+		const setLocalData = (name, value) => {
+			return new Promise(
+				(resolve) => {
+					if(!webAppMode) { // Asynchronous
+						env.storage.local.set({[name]: value})
+							.then(resolve());
+					}
+					else { // Synchronous
+						localStorage.setItem(name, value);
+						resolve();
+					}
+				}
+			)
+		}
+
+		const getLocalData = name => {
+			return new Promise(
+				(resolve) => { // Asynchronous
+					if(!webAppMode) {
+						env.storage.local.get(name)
+							.then(data => resolve(data[name]));
+					}
+					else { // Synchronous
+						resolve(localStorage.getItem(name));
+					}
+				}
+			)		
+		}
 
 	/* ### FUNCTIONS ### */
 
@@ -75,7 +105,7 @@
 				audits[index].byCounters.notApplicable = 0;
 				audits[index].selectedVersion = currentVersion;
 				// Udpates storage
-				env.storage.local.set({'audits': JSON.stringify(audits)});
+				setLocalData('audits', JSON.stringify(audits));
 				 // Updates view
 				render = !render;
 				return true;
@@ -129,13 +159,13 @@
 			}
 			// Sets the new value and saves updated audit
 			audits[index].byCriteria[criterion.id][criterion.prop] = criterion.value;
-			env.storage.local.set({'audits': JSON.stringify(audits)});
+			setLocalData('audits', JSON.stringify(audits));
 		}
 
 		function getAudits() {
 			return new Promise((resolve ,reject) => {
-				env.storage.local.get(['audits']).then((data) =>
-					data.audits !== undefined ? resolve(data) : reject('Absence d\'historique')                        
+				getLocalData('audits').then((data) =>
+					(data !== null && data !== undefined) ? resolve(data): reject('Absence d\'historique')
 				);
 			});
 		}
@@ -205,11 +235,11 @@
 	/* ### PROCEDURAL ### */
 
 		getAudits()
-			.then(data => audits = JSON.parse(data.audits))
+			.then(data => audits = JSON.parse(data))
 			.catch((warning) => console.warn(warning))
 				.finally(() => getRGESN(audits[index].selectedVersion).then(() => {
-					window.onscroll = () => env.storage.local.set({'scrollPosY': window.scrollY});
-					env.storage.local.get('scrollPosY').then(data => window.scroll(0, (data.scrollPosY || 0)));
+					window.onscroll = () => setLocalData('scrollPosY', window.scrollY);
+					getLocalData('scrollPosY').then(scrollPosY => window.scroll(0, (scrollPosY || 0)));
 				}		
 			)
 		);	
