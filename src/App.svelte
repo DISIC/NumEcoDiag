@@ -170,7 +170,16 @@
 			});
 		}
 
-		function exportAudit() {
+		function exportFile(content, mimetype, filename) {
+			let blob = new Blob([content], {type: mimetype});
+			let aElm = document.createElement('a');
+			aElm.setAttribute('href', window.URL.createObjectURL(blob));
+			aElm.setAttribute('download', filename);
+			aElm.click();
+			aElm.remove();
+		}
+
+		function exportResults() {
 			let csv = 'ID;Thématique;Libellé du critère;Évaluation;Commentaire;\n';
 			for(const criterion of referential.criteres) {
 				csv += `${criterion.id};${criterion.thematique};${criterion.critere};`;
@@ -207,17 +216,15 @@
 				}
 				csv += ';\n';
 			}
-			let blob = new Blob([csv], {});
-			let aElm = document.createElement('a');
-			aElm.setAttribute('href', window.URL.createObjectURL(blob));
-			aElm.setAttribute('download', 'NumÉcoDiag.csv');
-			aElm.click();
-			aElm.remove();
+			exportFile(csv, "text/csv", "NumÉcoDiag.csv");
+		}
+
+		function exportData() {
+			exportFile(JSON.stringify(audits[index]), "application/json", "NumÉcoDiag.json");
 		}
 
 		function buildBadge() {
 			alert(`Retrouvez votre badge en HTML dans votre dossier téléchargement. Vous pouvez afficher ce badge dans vos communications lorsque 100% des critères sont évalués.`);
-
 			const nbOfCriteria= referential.criteres.length;
 			const counters = audits[index].byCounters;
 			const assessed = counters.satisfied + counters.rejected + counters.notApplicable;
@@ -258,7 +265,8 @@
 				on:changeVersion="{(e) => changeRGESN(e.detail.versionToApply)}"
 				on:resetAudit="{() => resetAudit(undefined)}"
 				on:buildBadge="{() => buildBadge()}"
-				on:exportAudit="{exportAudit}" />
+				on:exportResults="{exportResults}"
+				on:exportData="{exportData}" />
 			<AuditForm 
 				audit="{audits[index]}" 
 				referential="{referential}" 

@@ -21,7 +21,8 @@
         <button>Valider</button>
     </form>
 {/if} -->
-<button on:click="{() => dispatch('exportAudit')}">Exporter les résultats (CSV)</button>
+<button on:click="{() => dispatch('exportData')}">Exporter les données (JSON)</button>
+<button on:click="{() => dispatch('exportResults')}">Exporter les résultats (CSV)</button>
 <button on:click="{() => dispatch('buildBadge')}">Télécharger le badge HTML</button>
 <button on:click="{() => dispatch('resetAudit')}">Réinitialiser le diagnostic</button>
 <style>
