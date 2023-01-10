@@ -216,7 +216,7 @@
 		}
 
 		function buildBadge() {
-			alert(`Retrouvez votre badge en HTML dans votre dossier téléchargement. Vous pouvez afficher ce badge dans vos communications losque 100% des critères sont évalués.`);
+			alert(`Retrouvez votre badge en HTML dans votre dossier téléchargement. Vous pouvez afficher ce badge dans vos communications lorsque 100% des critères sont évalués.`);
 
 			const nbOfCriteria= referential.criteres.length;
 			const counters = audits[index].byCounters;
