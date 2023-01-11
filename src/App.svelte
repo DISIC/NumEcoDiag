@@ -92,12 +92,12 @@
 				}
 			}
 			else {
-				alert("Vous utilisez déjà cette version du référentiel");
+				alert('Vous utilisez déjà cette version du référentiel');
 			}
 		}
 
 		function resetAudit(currentVersion = defaultVersion) {
-			if(confirm("Attention : cette action entraîne la perte de toutes les données non exportées saisies jusqu'à présent. Souhaitez-vous poursuivre ?")) {
+			if(confirm('Attention : cette action entraîne la perte de toutes les données non exportées saisies jusqu\'à présent. Souhaitez-vous poursuivre ?')) {
 				// Udpates runtime values
 				audits[index].byCriteria = {};
 				audits[index].byCounters.satisfied = 0;
