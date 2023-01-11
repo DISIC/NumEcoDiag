@@ -1,8 +1,5 @@
 <script>
-
-	import { createEventDispatcher } from 'svelte';
-	let dispatch = createEventDispatcher();
-    
+    import { webAppMode, env } from '../modules/module.mjs';
 </script>
 
 <nav>
@@ -13,7 +10,11 @@
     <ul>
         <li><a href="#resultats">Résultats</a></li>
         <li><a href="#diagnostic">Diagnostic</a></li>
-        <li><button on:click="{() => dispatch('configure')}">Options</button></li>
+        {#if !webAppMode}
+            <li><a href="/options.html" on:click|preventDefault="{() => env.tabs.create({url: '/options.html'})}">Options</a></li>
+        {:else}
+            <li><a href="/options.html">Options</a></li>
+        {/if}
         <li><a href="#a-propos">À propos</a></li>
     </ul>
 </nav>
