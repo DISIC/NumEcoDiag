@@ -1,6 +1,6 @@
 import Options from './Options.svelte';
 
-var options = new App({
+var options = new Options({
 	target: document.body
 });
 
