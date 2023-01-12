@@ -3,7 +3,7 @@
 	/* ### IMPORTS ### */
 
 		// Shared code
-		import { getLocalData, setLocalData, getAudits, getRGESN } from './modules/module.mjs';
+		import { getLocalData, setLocalData, getAudits, getRGESN } from './modules/helpers.mjs';
 
 		// Svelte components
 		import Navigation from './components/Navigation.svelte';

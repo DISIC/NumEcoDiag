@@ -3,7 +3,7 @@
     /* ### IMPORTS ### */
 
         // Shared code
-        import { setLocalData, getAudits, getRGESN } from './modules/module.mjs';
+        import { setLocalData, getAudits, getRGESN } from './modules/helpers.mjs';
         
     /* ### VARIABLES ### */
     
@@ -21,7 +21,6 @@
                 selectedVersion: defaultVersion, // By default.
             }
         ];
-        let render = false; // Makes Results & AuditForm components reactives
 
     /* ### FUNCTIONS ### */
 
@@ -121,8 +120,6 @@
                 audits[index].selectedVersion = defaultVersion;
                 // Udpates storage
                 setLocalData('audits', JSON.stringify(audits));
-                // Updates view
-                render = !render;
                 return true;
             }
             return false

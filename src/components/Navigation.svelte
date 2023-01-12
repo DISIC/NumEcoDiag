@@ -1,5 +1,6 @@
 <script>
-    import { webAppMode, env } from '../modules/module.mjs';
+    import { webAppMode } from '../modules/webAppMode.mjs';
+    import { env } from '../modules/env.mjs';
 </script>
 
 <nav>

@@ -1,5 +1,5 @@
-export const webAppMode = false; // Makes NumÉcoDiag able to be served as webApp to make debugging easier (server required)
-export const env = window.browser === undefined ? window.chrome : window.browser; // Makes NumÉcoDiag cross browser as webExtension (no server required)
+import { webAppMode } from './webAppMode.mjs';
+import { env } from './env.mjs';
 
 export const setLocalData = (name, value) => {
     return new Promise(
