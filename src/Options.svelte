@@ -4,6 +4,7 @@
 
         // Shared code
         import { setLocalData, getAudits, getRGESN } from './modules/helpers.mjs';
+        import { webAppMode } from './modules/webAppMode.mjs';
         
     /* ### VARIABLES ### */
     
@@ -29,9 +30,10 @@
             reader.onloadend = e => {
                 try {
                     const data = JSON.parse(e.target.result);
-                    if(confirm('Attention : cette action entraîne la perte de toutes les données non exportées saisies jusqu\'à présent. Souhaitez-vous poursuivre ?')) {
+                    if(confirm('Attention : cette action entraîne la perte des données du diagnostic actuel. Continuer ?')) {
                         audits[index] = data;
                         setLocalData('audits', JSON.stringify(audits));
+                        alert('Diagnostic chargé !');
                     }
                 }
                 catch(e) {
@@ -111,7 +113,7 @@
         }
 
         function resetAudit() {
-            if(confirm('Attention : cette action entraîne la perte de toutes les données non exportées saisies jusqu\'à présent. Souhaitez-vous poursuivre ?')) {
+            if(confirm('Attention : cette action entraîne la perte des données du diagnostic actuel. Continuer ?')) {
                 // Udpates runtime values
                 audits[index].byCriteria = {};
                 audits[index].byCounters.satisfied = 0;
@@ -120,9 +122,8 @@
                 audits[index].selectedVersion = defaultVersion;
                 // Udpates storage
                 setLocalData('audits', JSON.stringify(audits));
-                return true;
+                alert('Diagnostic effacé !');
             }
-            return false
         }
 
     /* ### PROCEDURAL ### */
@@ -136,27 +137,46 @@
                 
 </script>
 
-<button on:click="{exportData}">Exporter les données (JSON)</button>
-<button on:click="{exportResults}">Exporter les résultats (CSV)</button>
-<button on:click="{buildBadge}">Télécharger le badge HTML</button>
-<button on:click="{resetAudit}">Réinitialiser le diagnostic</button>
-<form on:submit|preventDefault="{(e) => importData(e.target.elements['file'].files[0])}">
-    <label for="file">
-        Importer un diagnostic (JSON)
-        <input 
-            id="file" 
-            name="numecodiag-data" 
-            type="file" 
-            accept="application/json" 
-            required>
-    </label>
-    <button>Valider</button>
-</form>
+<main>
+    {#if webAppMode}
+        <a href="/">Retour</a>
+    {/if}
+    <h1>NumÉcoDiag | Options</h1>
+    <h2>Exporter, communiquer</h2>
+    <button on:click="{exportResults}">Exporter les résultats (CSV)</button>
+    <button on:click="{exportData}">Exporter les données (JSON)</button>
+    <button on:click="{buildBadge}">Télécharger le badge (HTML)</button>
+    <form on:submit|preventDefault="{(e) => importData(e.target.elements['file'].files[0])}">
+        <label for="file">
+            <h2>Importer un diagnostic (JSON)</h2>
+            <input 
+                id="file" 
+                name="numecodiag-data" 
+                type="file" 
+                accept="application/json" 
+                required>
+        </label>
+        <button>Valider</button>
+    </form>
+    <h2>Configurer</h2>
+    <button on:click="{resetAudit}">Réinitialiser le diagnostic</button>
+</main>
 
 <style>
-    form {
-        margin-top: 2em;
-    }
+    @font-face {
+		font-display: swap;
+		font-family: "Marianne";
+		src: url("../static/marianne-regular.woff2") format("woff2");
+	}
+	@font-face {
+		font-display: swap;
+		font-family: "Marianne";
+		src: url("../static/marianne-bold.woff2") format("woff2");
+		font-weight: bold;
+	}
+	:global(main) {
+		font-family: "Marianne", sans-serif;
+	}
     button, input {
         display: block;
         margin-bottom: .5em;
