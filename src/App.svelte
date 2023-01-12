@@ -84,20 +84,13 @@
 	/* ### PROCEDURAL ### */
 
 		getAudits()
-			.then(data => audits = JSON.parse(data))
+			.then((data) => audits = JSON.parse(data))
 			.catch((warning) => console.warn(warning))
 				.finally(() => getRGESN(audits[index].selectedVersion)
                     .then((data) => {
-
-
-						
 						referential = data;
 						window.onscroll = () => setLocalData('scrollPosY', window.scrollY);
 						getLocalData('scrollPosY').then(scrollPosY => window.scroll(0, (scrollPosY || 0)));
-
-
-
-
 					}))
                     .catch((error) => console.error(error));
 
