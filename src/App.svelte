@@ -1,16 +1,19 @@
 <script>
 
-	/* ### VARIABLES ### */
+	/* ### IMPORTS ### */
 
+		// Shared code
 		import { getLocalData, setLocalData, getAudits, getRGESN } from './modules/module.mjs';
 
+		// Svelte components
 		import Navigation from './components/Navigation.svelte';
 		import Results from './components/Results.svelte';
 		import AuditForm from './components/AuditForm.svelte';
 		import About from './components/About.svelte';
   		import Header from './components/Header.svelte';
 
-		// const versions = ['v1']; // Available versions (stored in /public/rgesn)
+	/* ### VARIABLES ### */
+
 		let defaultVersion = 'v1';
 		let referential; // RGESN content
 		let index = 0; // Current audit index identifier

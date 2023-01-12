@@ -1,10 +1,15 @@
 <script>
 
-    /* ### VARIABLES ### */
+    /* ### IMPORTS ### */
 
+        // Shared code
         import { setLocalData, getAudits, getRGESN } from './modules/module.mjs';
+        
+        // Svelte components
         import Options from './components/Options.svelte';
 
+    /* ### VARIABLES ### */
+    
         let defaultVersion = 'v1';
         let referential; // RGESN content
         let index = 0; // Current audit index identifier
@@ -58,17 +63,6 @@
             aElm.setAttribute('download', 'badge.html');
             aElm.click();
             aElm.remove();
-        }
-
-        function changeRGESN(versionToApply) {
-            if(versionToApply !== audits[index].selectedVersion) {
-                if(resetAudit(versionToApply)) {
-                    getRGESN(versionToApply);
-                }
-            }
-            else {
-                alert('Vous utilisez déjà cette version du référentiel');
-            }
         }
 
         function resetAudit(currentVersion = defaultVersion) {
@@ -149,7 +143,6 @@
 </script>
 
 <Options 
-    on:changeVersion="{(e) => changeRGESN(e.detail.versionToApply)}"
     on:resetAudit="{() => resetAudit(undefined)}"
     on:buildBadge="{() => buildBadge()}"
     on:exportResults="{exportResults}"
