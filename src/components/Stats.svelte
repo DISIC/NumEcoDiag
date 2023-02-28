@@ -4,7 +4,7 @@
     export let nbOfCriteria;
 
     $: assessed = counters.satisfied + counters.rejected + counters.notApplicable;
-    $: conformity = ((counters.satisfied  + counters.notApplicable) / 79 * 100).toFixed(0);
+    $: conformity = (counters.satisfied / (79 - counters.notApplicable) * 100).toFixed(0);
 
 </script>
 
