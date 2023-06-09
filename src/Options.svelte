@@ -5,6 +5,7 @@
         // Shared code
         import { setLocalData, getAudits, getRGESN } from './modules/helpers.mjs';
         import { webAppMode } from './modules/webAppMode.mjs';
+        import { env } from './modules/env.mjs';
         
     /* ### VARIABLES ### */
     
@@ -129,11 +130,26 @@
     /* ### PROCEDURAL ### */
 
         getAudits()
-            .then(data => audits = JSON.parse(data))
+            .then((data) => audits = JSON.parse(data))
             .catch((warning) => console.warn(warning))
-                .finally(() => getRGESN(audits[index].selectedVersion)
-                    .then((data) => referential = data))
-                    .catch((error) => console.error(error));
+            .finally(() => getRGESN(audits[index].selectedVersion)
+                .then((rgesn) => referential = rgesn))
+                .catch((error) => console.error(error));
+
+
+        if(webAppMode) {
+            window.onstorage = () => 
+                getAudits()
+                    .then((data) => audits = JSON.parse(data))
+                    .catch((warning) => console.warn(warning));
+        }
+        else {
+            env.storage.onChanged.addListener(() => {
+                getAudits()
+                    .then((data) => audits = JSON.parse(data))
+                    .catch((warning) => console.warn(warning));  
+            });
+        }
                 
 </script>
 
